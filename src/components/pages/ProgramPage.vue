@@ -19,24 +19,22 @@ function danceNumber(sectionIndex, index) {
       <template v-if="part === 'first'">
         <section v-for="(section, sectionIndex) in sections" :key="section.group" class="grupo-programa">
           <h3 class="grupo-titulo">{{ section.group }}</h3>
-          <button v-for="(dance, index) in section.dances" :key="dance.name" class="danza-fila" type="button" @pointerdown.stop @touchstart.stop @click.stop="emit('select-dance', { ...dance, group: section.group, part: 'Primera parte' })">
+          <div v-for="(dance, index) in section.dances" :key="dance.name" class="danza-fila">
             <span class="danza-numero">{{ danceNumber(sectionIndex, index) }}</span>
-            <span class="danza-info"><strong>{{ dance.name }}</strong><small>Canción: {{ dance.song }} · Compositor: {{ dance.composer }}</small></span>
-            <span class="danza-ver" aria-hidden="true">＋</span>
-          </button>
+            <span class="danza-info"><button class="danza-nombre" type="button" :aria-label="`Ver información de ${dance.name}`" @pointerdown.stop @mousedown.stop @touchstart.stop @touchmove.stop @touchend.stop @click.stop="emit('select-dance', { ...dance, group: section.group, part: 'Primera parte' })">{{ dance.name }}</button></span>
+          </div>
         </section>
       </template>
       <template v-else>
         <section class="grupo-programa">
           <h3 class="grupo-titulo">Repertorio por confirmar</h3>
-          <button v-for="(dance, index) in second" :key="dance.name" class="danza-fila" type="button" @pointerdown.stop @touchstart.stop @click.stop="emit('select-dance', { ...dance, group: 'Elenco del Ballet Folclórico UCB', part: 'Segunda parte', tentative: true })">
+          <div v-for="(dance, index) in second" :key="dance.name" class="danza-fila">
             <span class="danza-numero">{{ String(index + 12).padStart(2, '0') }}</span>
-            <span class="danza-info"><strong>{{ dance.name }}</strong><small>Canción y compositor por confirmar</small></span>
-            <span class="danza-ver" aria-hidden="true">＋</span>
-          </button>
+            <span class="danza-info"><button class="danza-nombre" type="button" :aria-label="`Ver información de ${dance.name}`" @pointerdown.stop @mousedown.stop @touchstart.stop @touchmove.stop @touchend.stop @click.stop="emit('select-dance', { ...dance, group: 'Elenco del Ballet Folclórico UCB', part: 'Segunda parte', tentative: true })">{{ dance.name }}</button></span>
+          </div>
         </section>
       </template>
-      <p class="nota-interaccion">Toca una danza para conocer más</p>
+      <p class="nota-interaccion">Toca el nombre de una danza para ver su historia y música</p>
       <p class="pie-pagina">{{ part === 'first' ? 'Primera parte · 11 números' : 'Segunda parte · repertorio tentativo' }}</p>
     </div>
   </article>

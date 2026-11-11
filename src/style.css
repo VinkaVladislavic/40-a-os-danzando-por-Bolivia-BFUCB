@@ -342,3 +342,45 @@ html.dialog-open,html.dialog-open body{overflow:hidden!important;overscroll-beha
   .grupos-invitados-pagina .grupo-invitado { padding:5px 0; }
   .dance-modal { height:96dvh; }
 }
+
+/* v4: mobile-first editorial refinements */
+.bandera{animation:none!important;transform:translate(-50%,-50%)!important}
+.boton-abrir{min-height:52px;border-radius:8px;padding:14px 25px;background:linear-gradient(135deg,#d7b46c,#b98c46);color:#241211;font-size:12px;font-weight:700;box-shadow:0 8px 28px rgba(0,0,0,.24)}
+.boton-abrir:hover{background:#f0d49c;color:#241211}
+.controles-libro{align-items:center}.controles-libro .theme-toggle{border-radius:50%;width:42px;height:42px;font-size:20px}
+.programa-pagina .danza-fila{min-height:clamp(35px,5.3svh,47px);padding:6px 4px;gap:10px;border-bottom:1px solid rgba(151,111,60,.23);touch-action:manipulation}
+.programa-pagina .danza-info strong{font-size:clamp(17px,2.7vw,23px)!important;line-height:1.12;letter-spacing:.1px}
+.programa-pagina .danza-numero{font-size:clamp(14px,2vw,19px)}
+.programa-pagina .danza-ver{font-size:20px;flex-shrink:0}
+.programa-pagina .grupo-titulo{font-size:clamp(8px,1.7vw,10px);line-height:1.3;margin-top:5px}
+.programa-pagina .nota-interaccion{font-size:9px;line-height:1.35;margin-top:7px}
+.modal-bottom-close{border-radius:9px!important;background:linear-gradient(120deg,#542a22,#713c30)!important;color:#fff8e9!important;font-weight:700!important;letter-spacing:.2px!important;font-size:12px!important;box-shadow:0 3px 12px rgba(0,0,0,.12);min-height:52px!important}
+.modal-close{border-radius:50%;min-width:44px;min-height:44px}
+.modal-enter-active,.modal-leave-active{transition:opacity .32s ease!important}
+.modal-enter-active .dance-modal,.modal-leave-active .dance-modal{transition:transform .34s cubic-bezier(.2,.8,.2,1)!important}
+.modal-enter-from .dance-modal,.modal-leave-to .dance-modal{transform:translateY(100%)!important}
+.guide-overlay{position:fixed;inset:0;z-index:2147483600;background:rgba(18,8,10,.77);backdrop-filter:blur(7px);display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box}
+.guide-card{width:min(100%,390px);max-height:calc(100dvh - 40px);overflow-y:auto;background:#f4ecdf;color:#49261f;border:1px solid #c4a069;border-radius:18px;padding:clamp(20px,5vw,32px);text-align:center;box-shadow:0 24px 70px #0008}
+.guide-logo{width:74px;max-height:80px;object-fit:contain;margin:0 auto 12px;display:block}.guide-kicker{font-size:10px;letter-spacing:2px;color:#986e3d;font-weight:700}
+.guide-card h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,8vw,42px);font-weight:500;line-height:1.06;margin:12px 0}
+.guide-card p{font-size:13px;line-height:1.6}.guide-gesture{font-size:39px;color:#a47d43;margin:13px 0}.guide-gesture span{margin-left:12px}
+.guide-cta{width:100%;min-height:54px;background:#542a22;color:#fff6e8;border:1px solid #b89455;border-radius:9px;margin-top:13px;font-size:13px;font-weight:700;cursor:pointer}.guide-cta span{margin-left:12px}
+.guide-enter-active,.guide-leave-active{transition:opacity .25s ease}.guide-enter-from,.guide-leave-to{opacity:0}
+@media(max-width:600px){.seccion-libro{padding-left:4px;padding-right:4px}.libro-contenedor{max-width:100%}.programa-pagina{padding:clamp(21px,4svh,30px) 16px 13px!important}.programa-pagina h2{font-size:clamp(25px,6vw,32px)!important}.programa-pagina .danza-fila{min-height:clamp(32px,5.2svh,43px);padding:4px 1px;gap:6px}.programa-pagina .danza-info strong{font-size:clamp(15px,4.5vw,20px)!important}.programa-pagina .grupo-titulo{font-size:clamp(8px,2.3vw,10px)}.programa-pagina .separador{margin:3px 0 5px}.programa-pagina .grupo-programa{margin:2px 0 5px}.programa-pagina .pie-pagina{font-size:10px}.modal-bottom-close{display:block!important}.instruccion-libro{font-size:10px!important;line-height:1.5;text-align:center;padding:0 10px}}
+@media(max-width:360px){.programa-pagina .danza-fila{min-height:30px;padding:3px 1px}.programa-pagina .danza-info strong{font-size:15px!important}.programa-pagina .grupo-titulo{font-size:8px}.programa-pagina .nota-interaccion{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.guide-enter-active,.guide-leave-active,.modal-enter-active,.modal-leave-active,.modal-enter-active .dance-modal,.modal-leave-active .dance-modal{transition:none!important}}
+
+/* v5: Solo el texto de la danza abre su ficha. La fila queda libre para pasar páginas. */
+.programa-pagina .danza-fila{display:flex;align-items:center;cursor:default;pointer-events:none;position:relative;z-index:auto;touch-action:auto;background:transparent!important}
+.programa-pagina .danza-numero,.programa-pagina .danza-info{pointer-events:none}
+.programa-pagina .danza-nombre{pointer-events:auto;display:inline-block;width:auto;max-width:100%;min-height:26px;padding:2px 0;margin:0;border:0;background:transparent;color:#542a22;font:600 clamp(17px,2.7vw,23px) 'Cormorant Garamond',serif;line-height:1.15;text-align:left;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.programa-pagina .danza-nombre:focus-visible{outline:2px solid #b89455;outline-offset:3px;border-radius:2px}
+.programa-pagina .danza-nombre:active{color:#a47b3b}
+.theme-dark .programa-pagina .danza-nombre{color:#e8ca8d}
+@media(max-width:600px){.programa-pagina .danza-nombre{font-size:clamp(15px,4.5vw,20px);min-height:25px}}
+
+/* v6: Only the actual dance lettering is clickable; never the row or flex filler. */
+.programa-pagina .danza-fila { pointer-events: auto !important; cursor: default !important; }
+.programa-pagina .danza-info { flex: 1 1 auto; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; pointer-events: none !important; min-width: 0; }
+.programa-pagina .danza-nombre { flex: 0 0 auto !important; align-self: flex-start; width: max-content !important; max-width: 100%; display: inline !important; padding: 0 !important; margin: 0 !important; min-height: 0 !important; line-height: 1.25; pointer-events: auto !important; }
+.programa-pagina .danza-numero { pointer-events: none !important; }

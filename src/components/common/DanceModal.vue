@@ -58,7 +58,7 @@ onBeforeUnmount(() => {
               <p class="modal-note">La reseña es introductoria. Los datos musicales se completarán cuando se confirme la pieza interpretada y su autoría.</p>
             </div>
           </div>
-          <button class="modal-bottom-close" type="button" @pointerdown.stop @touchstart.stop @click.stop.prevent="close">Volver al programa</button>
+          <button class="modal-bottom-close" type="button" @pointerdown.stop @touchstart.stop @click.stop.prevent="close">← Continuar explorando el programa</button>
         </section>
       </div>
     </Transition>

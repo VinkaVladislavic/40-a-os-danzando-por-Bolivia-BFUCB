@@ -21,8 +21,12 @@ const modalActive = ref(false)
 const currentPage = ref(0)
 const totalPages = 15
 const themeMode = ref('light')
+const showGuide = ref(false)
+function dismissGuide() { showGuide.value = false; try { localStorage.setItem('gala-navigation-guide-v1', 'seen') } catch {} }
 function toggleTheme() { themeMode.value = themeMode.value === 'dark' ? 'light' : 'dark' }
 let pageFlip = null
+let lastNavigationAt = 0
+let lastPointerStart = null
 let resizeObserver = null
 const progress = computed(() => Math.min(100, Math.round(((currentPage.value + 1) / totalPages) * 100)))
 
@@ -36,8 +40,17 @@ function updatePage(event) {
   }
   currentPage.value = event.data ?? 0
 }
-function goNext() { if (!modalActive.value) pageFlip?.flipNext('top') }
-function goPrev() { if (!modalActive.value) pageFlip?.flipPrev('top') }
+function navigate(direction) {
+  if (modalActive.value || !pageFlip || showGuide.value) return
+  const now = performance.now()
+  // Prevent a single touch/click from starting a second page turn.
+  if (now - lastNavigationAt < 850) return
+  lastNavigationAt = now
+  if (direction === 'next') pageFlip.flipNext('top')
+  else pageFlip.flipPrev('top')
+}
+function goNext() { navigate('next') }
+function goPrev() { navigate('prev') }
 function openDance(dance) {
   // Record the actual physical book page before opening the dialog.
   modalOriginPage.value = pageFlip?.getCurrentPageIndex() ?? currentPage.value
@@ -63,14 +76,22 @@ function closeDance() {
     modalActive.value = false
   }
 }
+function handleBookPointerDown(event) {
+  if (event.target.closest('button, a, [role="button"]')) { lastPointerStart = null; return }
+  lastPointerStart = { x: event.clientX, y: event.clientY, time: performance.now() }
+}
 function handleBookClick(event) {
-  if (modalActive.value || event.target.closest('button, a, [role=button]')) return
+  if (modalActive.value || showGuide.value || event.target.closest('button, a, [role="button"]')) return
+  if (lastPointerStart) {
+    const moved = Math.hypot(event.clientX - lastPointerStart.x, event.clientY - lastPointerStart.y)
+    if (moved > 12) return // Leave swipes to page-flip, not the tap handler.
+  }
   const rect = libro.value?.getBoundingClientRect()
   if (!rect) return
   const x = event.clientX - rect.left
-  const edge = Math.max(42, rect.width * 0.12)
-  if (x > rect.width - edge) goNext()
-  else if (x < edge) goPrev()
+  // A tap anywhere in either half of the visible book works.
+  if (x >= rect.width / 2) goNext()
+  else goPrev()
 }
 function onKeydown(event) {
   if (!programaAbierto.value || modalActive.value) return
@@ -81,6 +102,7 @@ function onKeydown(event) {
 watch(programaAbierto, async opened => {
   if (opened) {
     await nextTick()
+    try { showGuide.value = localStorage.getItem('gala-navigation-guide-v1') !== 'seen' } catch { showGuide.value = true }
     if (!libro.value) return
     const compact = window.matchMedia('(max-width: 767px)').matches
     pageFlip = new PageFlip(libro.value, {
@@ -88,7 +110,7 @@ watch(programaAbierto, async opened => {
       minWidth: 250, maxWidth: 840, minHeight: 380, maxHeight: 1280,
       showCover: true, usePortrait: true, mobileScrollSupport: false,
       flippingTime: 720, maxShadowOpacity: 0.24, autoSize: true,
-      drawShadow: true, clickEventForward: false, useMouseEvents: true, swipeDistance: 24,
+      drawShadow: true, clickEventForward: false, disableFlipByClick: true, useMouseEvents: true, swipeDistance: 24,
     })
     pageFlip.loadFromHTML(libro.value.querySelectorAll('.pagina'))
     pageFlip.on('flip', updatePage)
@@ -102,6 +124,7 @@ watch(programaAbierto, async opened => {
     window.removeEventListener('keydown', onKeydown)
     if (pageFlip) { pageFlip.destroy(); pageFlip = null }
     currentPage.value = 0
+    showGuide.value = false
     modalActive.value = false
     danceSelected.value = null
     modalOriginPage.value = null
@@ -128,7 +151,7 @@ onBeforeUnmount(() => {
         <p class="lugar">Teatro Municipal <strong>“Alberto Saavedra Pérez”</strong></p>
         <p class="hora">19:00</p>
         <button class="theme-toggle portada-theme-toggle" @click="toggleTheme" :aria-label="themeMode === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'">{{ themeMode === 'dark' ? '☼ Modo claro' : '☾ Modo oscuro' }}</button>
-        <button class="boton-abrir" @click="programaAbierto = true"><span>Abrir programa</span><span class="flecha">→</span></button>
+        <button class="boton-abrir" @click="programaAbierto = true"><span>Descubrir el programa</span><span class="flecha">→</span></button>
         <p class="indicacion">Una celebración de nuestras raíces</p>
       </div>
     </section>
@@ -137,11 +160,11 @@ onBeforeUnmount(() => {
       <div class="barra-libro">
         <button class="boton-cerrar" @click="programaAbierto = false">← <span>Portada</span></button>
         <div class="progreso-wrap"><span>{{ String(currentPage + 1).padStart(2, '0') }} / {{ totalPages }}</span><div class="progreso"><i :style="{ width: progress + '%' }"></i></div></div>
-        <div class="controles-libro"><button class="theme-toggle" @click="toggleTheme" :aria-label="themeMode === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'">{{ themeMode === 'dark' ? '☼' : '☾' }}</button><button aria-label="Página anterior" @click="goPrev">‹</button><button aria-label="Página siguiente" @click="goNext">›</button></div>
+        <div class="controles-libro"><button class="theme-toggle" @click="toggleTheme" :aria-label="themeMode === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'">{{ themeMode === 'dark' ? '☼' : '☾' }}</button></div>
       </div>
       <div class="libro-contenedor">
-        <button class="flecha-lateral flecha-izquierda" aria-label="Página anterior" @click="goPrev">‹</button>
-        <div ref="libro" class="libro" :class="{ 'libro-modal-abierto': modalActive }" @click="handleBookClick">
+
+        <div ref="libro" class="libro" :class="{ 'libro-modal-abierto': modalActive }" @pointerdown.capture="handleBookPointerDown" @click="handleBookClick">
           <BookCoverPage />
           <HistoryPage />
           <IdentityPage />
@@ -153,9 +176,10 @@ onBeforeUnmount(() => {
           <TeamCorpsPage v-for="(corps, index) in danceCorps" :key="corps.name" :corps="corps" :page-number="9 + index" :theme="themeMode" />
           <ThanksPage />
         </div>
-        <button class="flecha-lateral flecha-derecha" aria-label="Página siguiente" @click="goNext">›</button>
+
       </div>
-      <p class="instruccion-libro"><span class="desktop-hint">Haz clic en los bordes o arrastra las páginas</span><span class="mobile-hint">Desliza o toca los bordes para pasar de página</span></p>
+      <p class="instruccion-libro">Toca la mitad izquierda o derecha, o desliza para pasar de página · Pellizca para ampliar</p>
+      <Teleport to="body"><Transition name="guide"><div v-if="showGuide" class="guide-overlay" role="dialog" aria-modal="true" aria-label="Cómo utilizar el programa"><div class="guide-card"><img src="/images/LogoBallet.png" alt="Ballet Folclórico UCB" class="guide-logo"/><p class="guide-kicker">TU PROGRAMA DIGITAL</p><h2>Una historia en cada página</h2><div class="guide-gesture" aria-hidden="true">☝ <span>↔</span></div><p><strong>Toca cualquier mitad de la página</strong> o <strong>desliza</strong> para pasar las páginas.</p><p>Toca una danza para descubrir su historia. Puedes <strong>ampliar con dos dedos</strong> como en cualquier página web.</p><button class="guide-cta" @click="dismissGuide">Comenzar a explorar <span>→</span></button></div></div></Transition></Teleport>
       <DanceModal :dance="danceSelected" :theme="themeMode" @close="closeDance" />
     </section>
   </main>
