@@ -1,590 +1,344 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
-
-:root {
-  font-family: 'Montserrat', sans-serif;
-  color: #f8f0e4;
-  background: #100b0b;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-button {
-  font: inherit;
-}
-
-.gala {
-  min-height: 100vh;
-  background: #100b0b;
-  overflow: hidden;
-}
-
-/* PORTADA */
-
-.portada {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100svh;
-  padding: 35px 20px;
-  overflow: hidden;
-  background: #160c0c;
-}
-
-.portada-fondo {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background-image: url('/images/fondo.png');
-  background-size: cover;
-  background-position: center;
-  transform: scale(1.03);
-  animation: aparecerFondo 2s ease-out both;
-}
-
-.portada-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(15, 7, 7, 0.5),
-      rgba(15, 7, 7, 0.15) 45%,
-      rgba(15, 7, 7, 0.85)
-    );
-}
-
-/* BANDERA DECORATIVA */
-
-.bandera {
-  position: absolute;
-  width: min(110%, 700px);
-  max-height: 65%;
-  object-fit: contain;
-  top: 50%;
-  left: 50%;
-  opacity: 0.16;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  animation: ondear 8s ease-in-out infinite alternate;
-}
-
-/* CONTENIDO */
-
-.contenido-portada {
-  width: 100%;
-  max-width: 540px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  animation: entrada 1.4s ease both;
-}
-
-.logo {
-  width: clamp(90px, 24vw, 145px);
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 0 18px rgba(218, 177, 98, 0.2));
-}
-
-.subtitulo {
-  margin: 0;
-  color: #d8b875;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 3px;
-  line-height: 1.8;
-}
-
-.subtitulo span {
-  display: block;
-  font-size: 8px;
-  letter-spacing: 2px;
-  opacity: 0.85;
-}
-
-.titulo-imagen {
-  width: min(100%, 450px);
-  max-height: 210px;
-  object-fit: contain;
-  margin: 16px 0 4px;
-  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.4));
-}
-
-.ornamento {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 190px;
-  margin: 12px 0 24px;
-  color: #d7b46c;
-}
-
-.ornamento span:not(.estrella) {
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(90deg, transparent, #d7b46c);
-}
-
-.ornamento span:last-child {
-  transform: rotate(180deg);
-}
-
-.estrella {
-  font-size: 14px;
-}
-
-.fecha {
-  margin: 0 0 12px;
-  color: #e4c88e;
-  font-size: 11px;
-  letter-spacing: 3px;
-}
-
-.lugar {
-  margin: 0;
-  color: #f2e8d9;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  line-height: 1.4;
-}
-
-.lugar strong {
-  display: block;
-  font-weight: 600;
-}
-
-.hora {
-  margin: 8px 0 25px;
-  color: #d8b875;
-  font-size: 14px;
-  letter-spacing: 4px;
-}
-
-/* BOTÓN */
-
-.boton-abrir {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  min-width: 210px;
-  padding: 14px 22px;
-  border: 1px solid #c9a45f;
-  border-radius: 2px;
-  background: rgba(30, 14, 13, 0.6);
-  color: #f5dfad;
-  cursor: pointer;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.boton-abrir:hover {
-  background: #c9a45f;
-  color: #1a0d0b;
-  transform: translateY(-2px);
-}
-
-.flecha {
-  font-size: 18px;
-}
-
-.indicacion {
-  margin: 24px 0 0;
-  color: rgba(248, 240, 228, 0.65);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
-  font-style: italic;
-}
-
-/* SECCIÓN DEL PROGRAMA */
-
-.programa {
-  min-height: 100svh;
-  padding: 70px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background:
-    radial-gradient(ellipse at top, #48211d, transparent 60%),
-    #120c0b;
-  animation: entrada 0.8s ease both;
-}
-
-.etiqueta {
-  color: #d7b46c;
-  font-size: 10px;
-  letter-spacing: 4px;
-}
-
-.programa h1 {
-  margin: 12px 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(38px, 10vw, 60px);
-  font-weight: 500;
-}
-
-.separador {
-  color: #d7b46c;
-  margin: 18px 0;
-}
-
-.mensaje {
-  max-width: 350px;
-  color: #d8cabb;
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.boton-volver {
-  margin-top: 35px;
-  padding: 12px 20px;
-  border: 1px solid #8b6a3b;
-  background: transparent;
-  color: #e5c98e;
-  cursor: pointer;
-}
-
-/* ANIMACIONES */
-
-@keyframes entrada {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes aparecerFondo {
-  from {
-    opacity: 0;
-    transform: scale(1.08);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1.03);
-  }
-}
-
-@keyframes ondear {
-  from {
-    transform: translate(-52%, -50%) rotate(-2deg);
-  }
-
-  to {
-    transform: translate(-48%, -50%) rotate(2deg);
-  }
-}
-
-/* TABLET Y COMPUTADORA */
-
-@media (min-width: 768px) {
-  .portada {
-    padding: 50px;
-  }
-
-  .logo {
-    width: 140px;
-  }
-
-  .titulo-imagen {
-    max-height: 260px;
-  }
-
-  .lugar {
-    font-size: 27px;
-  }
-}
-
-/* ACCESIBILIDAD: REDUCIR MOVIMIENTO */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-
-/* LIBRO DIGITAL */
-
-.seccion-libro {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 12px;
-  background:
-    radial-gradient(ellipse at center, #48211d 0%, #160c0c 65%);
-}
-
-.boton-cerrar {
-  align-self: flex-start;
-  margin: 0 0 22px;
-  padding: 10px 14px;
-  border: 1px solid #9c7947;
-  background: rgba(20, 10, 10, 0.5);
-  color: #e5c98e;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.libro-contenedor {
-  width: 100%;
-  max-width: 1000px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.libro {
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-}
-
-/* CADA PÁGINA */
-
-.pagina {
-  background: #f4ecdf;
-  color: #30221b;
-  overflow: hidden;
-}
-
-.portada-libro {
-  background:
-    linear-gradient(rgba(23, 10, 9, 0.85), rgba(23, 10, 9, 0.94)),
-    url('/images/fondo.png') center / cover;
-  color: #e8ca8d;
-}
-
-.marco {
-  height: 100%;
-  margin: 16px;
-  border: 1px solid #b89455;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-}
-
-.logo-libro {
-  width: 100px;
-  max-height: 120px;
-  object-fit: contain;
-  margin-bottom: 18px;
-}
-
-.etiqueta {
-  color: #9c7947;
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-align: center;
-}
-
-.titulo-libro {
-  width: 100%;
-  max-width: 280px;
-  max-height: 200px;
-  object-fit: contain;
-  margin: 20px 0;
-}
-
-.separador {
-  color: #b89455;
-  text-align: center;
-  margin: 18px 0;
-}
-
-.texto-portada {
-  font-size: 11px;
-  letter-spacing: 3px;
-}
-
-.texto-portada-secundario {
-  margin-top: 12px;
-  color: #c9a76b;
-  font-size: 9px;
-  letter-spacing: 2px;
-}
-
-/* CONTENIDO INTERNO */
-
-.contenido-pagina {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 45px 28px 30px;
-}
-
-.numero-pagina {
-  position: absolute;
-  top: 12px;
-  right: 22px;
-  color: #a88a5c;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 14px;
-}
-
-.contenido-pagina h2 {
-  margin: 12px 0;
-  color: #542a22;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(28px, 5vw, 42px);
-  font-weight: 500;
-  line-height: 1.1;
-  text-align: center;
-}
-
-.texto-pagina {
-  color: #59483b;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  line-height: 1.6;
-  text-align: center;
-}
-
-.pie-pagina {
-  margin-top: auto;
-  color: #9c7947;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 14px;
-  font-style: italic;
-  text-align: center;
-}
-
-/* LISTA DE DANZAS */
-
-.danza-placeholder {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin: 15px 0;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #d8c9b5;
-}
-
-.danza-placeholder > span {
-  color: #9c7947;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-}
-
-.danza-placeholder h3 {
-  margin: 0;
-  color: #542a22;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.danza-placeholder p {
-  margin: 5px 0 0;
-  color: #806c5b;
-  font-size: 10px;
-  line-height: 1.5;
-}
-
-.pagina-final {
-  background:
-    linear-gradient(rgba(23, 10, 9, 0.88), rgba(23, 10, 9, 0.94)),
-    url('/images/fondo.png') center / cover;
-  color: #e8ca8d;
-}
-
-.pagina-final .contenido-pagina {
-  justify-content: center;
-}
-
-.pagina-final h2 {
-  color: #e8ca8d;
-}
-
-.pagina-final .texto-pagina {
-  color: #e3d4c0;
-}
-
-.instruccion-libro {
-  margin: 22px 0 0;
-  color: #d7b46c;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  font-style: italic;
-  text-align: center;
-}
-
-/* CELULARES */
-
-@media (max-width: 600px) {
-  .seccion-libro {
-    padding: 16px 8px;
-  }
-
-  .boton-cerrar {
-    margin-bottom: 14px;
-  }
-
-  .contenido-pagina {
-    padding: 35px 18px 22px;
-  }
-
-  .contenido-pagina h2 {
-    font-size: 29px;
-  }
-
-  .texto-pagina {
-    font-size: 16px;
-  }
-
-  .logo-libro {
-    width: 75px;
-  }
-
-  .marco {
-    margin: 10px;
-    padding: 12px;
-  }
-
-  .titulo-libro {
-    margin: 12px 0;
-  }
-
-  .danza-placeholder h3 {
-    font-size: 17px;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+:root{font-family:'Montserrat',sans-serif;color:#f8f0e4;background:#100b0b;font-synthesis:none;text-rendering:optimizeLegibility}*{box-sizing:border-box}body{margin:0;min-width:320px;min-height:100vh}button{font:inherit}.gala{min-height:100vh;background:#100b0b;overflow:hidden}
+/* Portada exterior */
+.portada{position:relative;isolation:isolate;display:flex;justify-content:center;align-items:center;min-height:100svh;padding:35px 20px;overflow:hidden;background:#160c0c}.portada-fondo{position:absolute;inset:0;z-index:-2;background-image:url('/images/fondo.png');background-size:cover;background-position:center;transform:scale(1.03);animation:aparecerFondo 2s ease-out both}.portada-overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,7,7,.5),rgba(15,7,7,.15) 45%,rgba(15,7,7,.85))}.bandera{position:absolute;width:min(110%,700px);max-height:65%;object-fit:contain;top:50%;left:50%;opacity:.16;transform:translate(-50%,-50%);pointer-events:none;animation:ondear 8s ease-in-out infinite alternate}.contenido-portada{width:100%;max-width:540px;display:flex;flex-direction:column;align-items:center;text-align:center;animation:entrada 1.4s ease both}.logo{width:clamp(90px,24vw,145px);height:auto;object-fit:contain;margin-bottom:12px;filter:drop-shadow(0 0 18px rgba(218,177,98,.2))}.subtitulo{margin:0;color:#d8b875;font-size:10px;font-weight:500;letter-spacing:3px;line-height:1.8}.subtitulo span{display:block;font-size:8px;letter-spacing:2px;opacity:.85}.titulo-imagen{width:min(100%,450px);max-height:210px;object-fit:contain;margin:16px 0 4px;filter:drop-shadow(0 6px 20px rgba(0,0,0,.4))}.ornamento{display:flex;align-items:center;justify-content:center;gap:12px;width:190px;margin:12px 0 24px;color:#d7b46c}.ornamento span:not(.estrella){height:1px;flex:1;background:linear-gradient(90deg,transparent,#d7b46c)}.ornamento span:last-child{transform:rotate(180deg)}.estrella{font-size:14px}.fecha{margin:0 0 12px;color:#e4c88e;font-size:11px;letter-spacing:3px}.lugar{margin:0;color:#f2e8d9;font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.4}.lugar strong{display:block;font-weight:600}.hora{margin:8px 0 25px;color:#d8b875;font-size:14px;letter-spacing:4px}.boton-abrir{display:inline-flex;align-items:center;justify-content:center;gap:24px;min-width:210px;padding:14px 22px;border:1px solid #c9a45f;border-radius:2px;background:rgba(30,14,13,.6);color:#f5dfad;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:.3s}.boton-abrir:hover{background:#c9a45f;color:#1a0d0b;transform:translateY(-2px)}.flecha{font-size:18px}.indicacion{margin:24px 0 0;color:rgba(248,240,228,.65);font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic}
+/* Libro */
+.seccion-libro{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 16px 24px;background:radial-gradient(ellipse at center,#48211d 0%,#160c0c 65%)}.barra-libro{width:min(100%,1120px);display:grid;grid-template-columns:1fr minmax(120px,240px) 1fr;align-items:center;gap:12px;margin-bottom:16px}.boton-cerrar{justify-self:start;padding:9px 13px;border:1px solid #9c7947;background:rgba(20,10,10,.5);color:#e5c98e;cursor:pointer;font-size:11px;letter-spacing:.5px}.progreso-wrap{display:flex;align-items:center;gap:10px;color:#d8bd8b;font-size:10px;letter-spacing:1px}.progreso{height:3px;flex:1;background:rgba(215,180,108,.2);overflow:hidden}.progreso i{display:block;height:100%;background:#d7b46c;transition:width .35s ease}.controles-libro{justify-self:end;display:flex;gap:7px}.controles-libro button,.flecha-lateral{width:34px;height:34px;border:1px solid rgba(215,180,108,.55);background:rgba(20,10,10,.45);color:#e5c98e;font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1;cursor:pointer;transition:background .2s}.controles-libro button:hover,.flecha-lateral:hover{background:#9c7947;color:#fff}.libro-contenedor{position:relative;width:100%;max-width:1100px;display:flex;justify-content:center;align-items:center}.libro{width:min(100%,840px);margin:auto;touch-action:pan-y}.pagina{background:#f4ecdf;color:#30221b;overflow:hidden}.portada-libro{background:linear-gradient(rgba(23,10,9,.84),rgba(23,10,9,.94)),url('/images/fondo.png') center/cover;color:#e8ca8d}.marco{height:calc(100% - 32px);margin:16px;border:1px solid #b89455;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}.logo-libro{width:clamp(75px,16%,105px);max-height:120px;object-fit:contain;margin-bottom:14px}.eyebrow{color:#d8bd8b;font-size:8px;letter-spacing:2px;line-height:1.7}.titulo-libro{width:100%;max-width:280px;max-height:200px;object-fit:contain;margin:16px 0}.ornamento-linea{width:55%;display:flex;align-items:center;gap:12px;color:#b89455;margin:12px auto}.ornamento-linea:before,.ornamento-linea:after{content:'';height:1px;flex:1;background:#b89455}.texto-portada{font-size:11px;letter-spacing:3px}.texto-portada-secundario{margin-top:12px;color:#c9a76b;font-size:9px;letter-spacing:2px}.lugar-portada{font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.3;color:#ead8b8}.lugar-portada strong{font-weight:600}
+/* Contenido de páginas */
+.contenido-pagina{position:relative;display:flex;flex-direction:column;height:100%;padding:39px 27px 25px}.numero-pagina{position:absolute;top:10px;right:19px;color:#a88a5c;font-family:'Cormorant Garamond',serif;font-size:13px}.etiqueta{color:#9c7947;font-size:8px;letter-spacing:2.2px;text-align:center;line-height:1.6}.contenido-pagina h2,.marco-intermedio h2{margin:8px 0;color:#542a22;font-family:'Cormorant Garamond',serif;font-size:clamp(27px,4.1vw,39px);font-weight:500;line-height:1.02;text-align:center}.separador{color:#b89455;text-align:center;margin:9px 0 12px}.texto-pagina{color:#59483b;font-family:'Cormorant Garamond',serif;font-size:clamp(14px,1.7vw,17px);line-height:1.43;text-align:center;margin:7px 0}.texto-izquierda{text-align:left}.pie-pagina{margin-top:auto;padding-top:8px;color:#9c7947;font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;text-align:center}.historia-pagina{padding-top:34px}.historia-pagina .texto-pagina{font-size:clamp(12px,1.5vw,15px);line-height:1.42;margin:5px 0}.maestra-bloque{display:grid;grid-template-columns:94px 1fr;gap:13px;align-items:center;margin-top:11px;padding-top:11px;border-top:1px solid #d8c9b5}.retrato-placeholder{min-height:112px;background:linear-gradient(145deg,#d7c4a5,#8c6c50);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff7e9;text-align:center}.retrato-placeholder span{font-family:'Cormorant Garamond',serif;font-size:27px}.retrato-placeholder small{font-size:8px;line-height:1.4}.bio-maestra .etiqueta{text-align:left;font-size:7px}.bio-maestra h3{font-family:'Cormorant Garamond',serif;color:#542a22;font-size:19px;margin:3px 0}.bio-maestra p{font-size:9px;line-height:1.5;color:#59483b;margin:4px 0}.nota-provisional{display:block;color:#927b62;font-size:7px;line-height:1.4;font-style:italic;margin-top:4px}.identidad-pagina .foto-identidad{height:130px;margin:2px 0 12px;background:linear-gradient(135deg,rgba(55,32,22,.25),rgba(55,32,22,.7)),url('/images/fondo.png') center/cover;display:flex;align-items:flex-end;justify-content:center;padding:12px;color:#fff0d1;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic}.identidad-pagina blockquote{margin:12px 0;padding:8px 14px;border-left:2px solid #b89455;color:#76563b;font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;text-align:center}.programa-pagina{padding:34px 23px 20px}.programa-pagina h2{margin:5px 0;font-size:34px}.programa-pagina .separador{margin:5px 0 7px}.grupo-programa{margin:3px 0 7px}.grupo-titulo{margin:3px 0 4px;padding-bottom:4px;border-bottom:1px solid #cdb99e;color:#86663e;font-size:8px;font-weight:700;line-height:1.35;letter-spacing:.5px;text-transform:uppercase}.danza-fila{width:100%;display:flex;align-items:center;gap:9px;padding:5px 2px;border:0;border-bottom:1px solid rgba(174,148,112,.35);background:transparent;text-align:left;cursor:pointer;color:#30221b;transition:background .2s}.danza-fila:hover,.danza-fila:focus-visible{background:rgba(184,148,85,.13);outline:none}.danza-numero{width:21px;flex:none;color:#a17d49;font-family:'Cormorant Garamond',serif;font-size:16px}.danza-info{min-width:0;display:flex;flex-direction:column;gap:1px;flex:1}.danza-info strong{font-family:'Cormorant Garamond',serif;color:#542a22;font-size:15px;font-weight:600;line-height:1.1}.danza-info small{color:#806c5b;font-size:7px;line-height:1.3}.danza-ver{color:#a17d49;font-size:15px}.nota-interaccion{text-align:center;color:#927b62;font-size:7px;font-style:italic;margin:5px 0 0}.aviso-provisional{text-align:center;color:#9b7750;font-size:8px;font-style:italic;margin:0 0 4px}.pagina-intermedio{background:linear-gradient(145deg,#f3e8d6,#e8d8bf)}.marco-intermedio{justify-content:center}.marco-intermedio h2{font-size:52px}.marco-intermedio p:not(.etiqueta){font-family:'Cormorant Garamond',serif;color:#76563b;font-size:20px;font-style:italic}.marco-intermedio small{color:#9c7947;font-size:8px;letter-spacing:2px}.equipo-foto{height:170px;margin:8px 0 12px;background:linear-gradient(135deg,#bba17e,#655040);display:flex;align-items:center;justify-content:center;color:#fff0d1;font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;text-align:center}.creditos-lista{margin:8px 0}.creditos-lista p{display:flex;flex-direction:column;gap:3px;padding:7px 0;margin:0;border-bottom:1px solid #d8c9b5;font-size:10px;color:#59483b}.creditos-lista strong{color:#76563b;font-size:8px;letter-spacing:.6px;text-transform:uppercase}.agradecimiento-pagina{justify-content:center;text-align:center;padding:35px}.agradecimiento-pagina h2{font-size:42px;margin:20px 0}.agradecimiento-pagina h3{margin:25px 0 5px;color:#542a22;font-family:'Cormorant Garamond',serif;font-size:29px;font-weight:500;line-height:1.05}.agradecimiento-pagina .texto-pagina{margin:10px 0}
+/* Navegación libro */
+.flecha-lateral{position:absolute;z-index:5;top:50%;transform:translateY(-50%);width:36px;height:46px;font-size:32px}.flecha-izquierda{left:0}.flecha-derecha{right:0}.instruccion-libro{margin:15px 0 0;color:rgba(248,240,228,.65);font-size:10px;letter-spacing:.5px;text-align:center}.mobile-hint{display:none}
+/* Modal de danza */
+.modal-backdrop{position:fixed;z-index:1000;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(10,6,5,.78);backdrop-filter:blur(5px)}.dance-modal{position:relative;display:grid;grid-template-columns:minmax(150px,.85fr) 1.15fr;width:min(720px,100%);max-height:min(86svh,650px);overflow:auto;background:#f4ecdf;color:#30221b;box-shadow:0 24px 80px rgba(0,0,0,.45)}.modal-close{position:absolute;z-index:2;right:10px;top:8px;width:34px;height:34px;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:rgba(30,15,12,.65);color:#fff;font-size:24px;cursor:pointer}.modal-photo{min-height:390px;background:linear-gradient(160deg,rgba(40,20,15,.12),rgba(40,20,15,.7)),url('/images/fondo.png') center/cover;display:flex;align-items:flex-end;justify-content:center;padding:24px;text-align:center;color:#fff0d1;font-family:'Cormorant Garamond',serif;font-size:22px}.modal-photo small{display:block;margin-top:8px;font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:.5px}.modal-content{padding:42px 34px 28px}.modal-content .etiqueta{text-align:left}.modal-content h2{margin:10px 0 2px;color:#542a22;font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:500;line-height:1}.modal-region{margin:5px 0;color:#927b62;font-size:11px;letter-spacing:1px}.modal-description{color:#59483b;font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.5}.modal-meta{display:flex;flex-direction:column;gap:4px;margin-top:14px;padding-top:10px;border-top:1px solid #d8c9b5}.modal-meta span{color:#9c7947;font-size:8px;letter-spacing:1.5px}.modal-meta strong{color:#59483b;font-size:11px;font-weight:500}.modal-note{margin-top:18px;color:#927b62;font-size:8px;line-height:1.5;font-style:italic}.modal-enter-active,.modal-leave-active{transition:opacity .22s ease}.modal-enter-active .dance-modal,.modal-leave-active .dance-modal{transition:transform .22s ease}.modal-enter-from,.modal-leave-to{opacity:0}.modal-enter-from .dance-modal,.modal-leave-to .dance-modal{transform:translateY(12px) scale(.98)}
+@keyframes entrada{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes aparecerFondo{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:scale(1.03)}}@keyframes ondear{from{transform:translate(-52%,-50%) rotate(-2deg)}to{transform:translate(-48%,-50%) rotate(2deg)}}
+@media(min-width:768px){.portada{padding:50px}.logo{width:140px}.titulo-imagen{max-height:260px}.lugar{font-size:27px}.seccion-libro{padding:22px 28px 26px}.libro{max-width:840px}.contenido-pagina{padding-left:34px;padding-right:34px}.historia-pagina .texto-pagina{font-size:15px}.maestra-bloque{grid-template-columns:105px 1fr}.retrato-placeholder{min-height:120px}}
+@media(max-width:600px){.seccion-libro{justify-content:flex-start;padding:12px 8px 18px;min-height:100svh}.barra-libro{grid-template-columns:1fr minmax(95px,130px) 1fr;margin-bottom:12px}.boton-cerrar{padding:8px 9px;font-size:10px}.boton-cerrar span{display:none}.progreso-wrap{gap:6px;font-size:9px}.controles-libro button{width:30px;height:30px}.libro-contenedor{width:100%;margin:auto 0}.libro{width:100%;max-width:440px}.flecha-lateral{width:26px;height:38px;font-size:26px}.flecha-izquierda{left:0}.flecha-derecha{right:0}.mobile-hint{display:inline}.desktop-hint{display:none}.instruccion-libro{font-size:9px;margin-top:9px}.contenido-pagina{padding:36px 24px 22px}.programa-pagina{padding:30px 20px 18px}.programa-pagina h2{font-size:31px}.grupo-programa{margin-bottom:5px}.danza-fila{padding:4px 1px;gap:7px}.danza-info strong{font-size:14px}.danza-numero{font-size:15px}.danza-info small{font-size:7px}.historia-pagina .texto-pagina{font-size:12px}.maestra-bloque{grid-template-columns:82px 1fr;gap:9px;margin-top:7px;padding-top:8px}.retrato-placeholder{min-height:105px}.bio-maestra h3{font-size:17px}.bio-maestra p{font-size:8px}.nota-provisional{font-size:6.5px}.identidad-pagina .foto-identidad{height:105px}.equipo-foto{height:135px}.dance-modal{display:flex;flex-direction:column;max-height:88svh;width:min(460px,100%)}.modal-photo{min-height:150px;max-height:180px;flex:none;padding:15px;font-size:18px}.modal-content{padding:22px 23px 24px}.modal-content h2{font-size:34px}.modal-description{font-size:16px;margin:10px 0}.modal-meta{margin-top:9px;padding-top:8px}.modal-note{margin-top:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* Ajustes de edición: bandera estática, programa compacto y cuerpos de baile */
+.bandera{animation:none;transform:translate(-50%,-50%)}
+.fecha{line-height:1.8;letter-spacing:2px}
+.fechas-portada{line-height:1.8;text-align:center}
+.historia-pagina{padding-top:28px}
+.historia-pagina h2{font-size:clamp(25px,3.6vw,34px);margin:4px 0}
+.historia-pagina .separador{margin:5px 0 7px}
+.historia-pagina .texto-pagina{font-size:clamp(11px,1.35vw,13px);line-height:1.34;margin:4px 0}
+.maestra-bloque{grid-template-columns:88px minmax(0,1fr);gap:11px;margin-top:8px;padding-top:8px;align-items:start}
+.retrato-placeholder{min-height:120px}
+.bio-maestra h3{font-size:18px}
+.bio-maestra p{font-size:8.5px;line-height:1.42}
+.programa-pagina{padding:27px 20px 17px}
+.programa-pagina h2{font-size:30px;margin:3px 0}
+.programa-pagina .separador{margin:3px 0 5px}
+.grupo-programa{margin:2px 0 4px}
+.grupo-titulo{font-size:7px;line-height:1.2;margin:2px 0 2px;padding-bottom:3px}
+.danza-fila{gap:6px;padding:3px 1px;min-height:29px}
+.danza-numero{width:18px;font-size:14px}
+.danza-info{gap:0}
+.danza-info strong{font-size:13px;line-height:1.05}
+.danza-info small{font-size:6px;line-height:1.15;white-space:normal}
+.danza-ver{font-size:13px}
+.nota-interaccion{font-size:6.5px;margin:3px 0 0}
+.equipo-pagina .equipo-foto{height:145px}
+.cuerpo-pagina{padding-top:32px}
+.cuerpo-pagina h2{margin:5px 0;font-size:34px}
+.cuerpo-fotos{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:7px;margin:6px 0 12px;align-items:stretch}
+.foto-cuerpo{height:104px;margin:0;background:linear-gradient(145deg,#9b8060,#4b3328);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff0d1;overflow:hidden}
+.foto-cuerpo.foto-mixta{height:118px}
+.foto-cuerpo img{width:100%;height:100%;object-fit:cover}
+.foto-cuerpo figcaption{font-family:'Cormorant Garamond',serif;font-size:12px;line-height:1.2;padding:5px}
+.integrantes-cuerpo{min-height:0;flex:1;border-top:1px solid #d8c9b5;padding-top:8px;overflow:hidden}
+.integrantes-titulo{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.integrantes-titulo h3{margin:0;color:#542a22;font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500}
+.integrantes-titulo span{color:#927b62;font-size:8px}
+.lista-integrantes{columns:2;column-gap:18px;margin:7px 0 0;padding-left:18px;color:#59483b;font-size:9px;line-height:1.55}
+.lista-integrantes li{break-inside:avoid;padding-right:4px}
+.integrantes-pendientes{margin:9px 0;color:#927b62;font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.35}
+.theme-toggle{border:1px solid rgba(215,180,108,.65);background:rgba(20,10,10,.35);color:#e5c98e;padding:7px 9px;font-size:10px;cursor:pointer;white-space:nowrap}
+.theme-toggle:hover{background:#c9a45f;color:#1a0d0b}
+.portada-theme-toggle{margin:0 0 12px}
+/* Tema oscuro para las páginas interiores; la portada conserva su identidad borgoña y dorada */
+.theme-dark .pagina:not(.portada-libro){background:#211816;color:#f0e4d2}
+.theme-dark .contenido-pagina h2,.theme-dark .bio-maestra h3,.theme-dark .danza-info strong,.theme-dark .integrantes-titulo h3,.theme-dark .agradecimiento-pagina h3{color:#e8ca8d}
+.theme-dark .texto-pagina,.theme-dark .bio-maestra p,.theme-dark .creditos-lista p,.theme-dark .modal-description{color:#e0d2c0}
+.theme-dark .grupo-titulo,.theme-dark .creditos-lista strong{color:#d0ad70}
+.theme-dark .danza-fila{color:#f0e4d2;border-bottom-color:rgba(215,180,108,.22)}
+.theme-dark .danza-info small,.theme-dark .modal-region,.theme-dark .nota-interaccion,.theme-dark .aviso-provisional,.theme-dark .integrantes-titulo span,.theme-dark .integrantes-pendientes{color:#c2a987}
+.theme-dark .maestra-bloque,.theme-dark .creditos-lista p,.theme-dark .integrantes-cuerpo{border-color:rgba(215,180,108,.28)}
+.theme-dark .identidad-pagina blockquote{color:#e0c28b}
+.theme-dark .pagina-intermedio{background:linear-gradient(145deg,#30221d,#211613)}
+.theme-dark .marco-intermedio p:not(.etiqueta){color:#e0c28b}
+.theme-dark .marco-intermedio small{color:#d0ad70}
+.theme-dark .lista-integrantes{color:#e0d2c0}
+.theme-dark .pie-pagina{color:#d0ad70}
+.theme-dark .dance-modal{background:#211816;color:#f0e4d2}
+.theme-dark .modal-content h2{color:#e8ca8d}
+.theme-dark .modal-meta{border-color:rgba(215,180,108,.28)}
+.theme-dark .modal-meta strong{color:#e0d2c0}
+.theme-dark .modal-note{color:#c2a987}
+@media(max-width:600px){
+  .fecha{font-size:10px;line-height:1.7}
+  .fechas-portada{font-size:8px}
+  .historia-pagina{padding-top:30px}
+  .historia-pagina h2{font-size:26px;line-height:1.05}
+  .historia-pagina .texto-pagina{font-size:10px;line-height:1.3;margin:3px 0}
+  .maestra-bloque{grid-template-columns:74px minmax(0,1fr);gap:8px;margin-top:6px;padding-top:6px}
+  .retrato-placeholder{min-height:100px}
+  .bio-maestra h3{font-size:15px}
+  .bio-maestra p{font-size:7.2px;line-height:1.35}
+  .nota-provisional{font-size:6px}
+  .programa-pagina{padding:26px 16px 15px}
+  .programa-pagina h2{font-size:27px}
+  .grupo-titulo{font-size:6.5px;letter-spacing:.2px}
+  .danza-fila{min-height:27px;padding:2px 0;gap:4px}
+  .danza-numero{width:16px;font-size:13px}
+  .danza-info strong{font-size:12px}
+  .danza-info small{font-size:5.6px;line-height:1.1}
+  .danza-ver{font-size:12px}
+  .cuerpo-pagina{padding:31px 18px 18px}
+  .cuerpo-pagina h2{font-size:30px}
+  .cuerpo-fotos{gap:5px;margin:5px 0 9px}
+  .foto-cuerpo{height:82px}
+  .foto-cuerpo.foto-mixta{height:94px}
+  .foto-cuerpo figcaption{font-size:10px}
+  .lista-integrantes{font-size:7.5px;line-height:1.45;column-gap:12px}
+  .integrantes-titulo h3{font-size:19px}
+  .integrantes-pendientes{font-size:12px}
+  .portada-theme-toggle{font-size:9px;padding:6px 8px}
+}
+@media(max-height:700px){.portada{padding-top:18px;padding-bottom:18px}.logo{width:clamp(75px,18vw,115px);margin-bottom:7px}.titulo-imagen{max-height:150px;margin:9px 0 2px}.ornamento{margin:7px 0 12px}.hora{margin:5px 0 12px}.indicacion{margin-top:12px}}
+
+.theme-light .seccion-libro{background:radial-gradient(ellipse at center,#f5ead9 0%,#d9c8b0 75%)}
+.theme-light .boton-cerrar,.theme-light .controles-libro button,.theme-light .flecha-lateral{background:rgba(255,250,242,.8);color:#65402c;border-color:#b89455}
+.theme-light .progreso-wrap{color:#65402c}
+.theme-light .instruccion-libro{color:#684f3d}
+.modal-photo-con-imagen{padding:0}
+.modal-photo-con-imagen img{width:100%;height:100%;object-fit:cover}
+
+/* Mobile-first refinements: stable bottom sheets, readable lists and touch targets */
+.modal-backdrop{z-index:5000;padding:clamp(8px,3vw,22px);overscroll-behavior:contain}
+.dance-modal{display:flex;flex-direction:column;position:relative;width:min(680px,100%);max-height:min(88svh,780px);overflow:hidden;border-radius:14px;isolation:isolate}
+.modal-scroll{min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+.modal-photo{min-height:210px;max-height:290px;height:30svh;flex:none}
+.modal-photo-con-imagen img{display:block;width:100%;height:100%;object-fit:cover}
+.modal-content{padding:25px clamp(20px,5vw,38px) 24px}
+.modal-close{position:absolute;top:12px;right:12px;width:42px;height:42px;display:grid;place-items:center;z-index:5;touch-action:manipulation}
+.modal-handle{display:none}
+.modal-bottom-close{display:none}
+.photo-viewer{position:relative;width:min(620px,100%);max-height:88svh;overflow:auto;padding:28px 18px 18px;border-radius:14px;background:#f4ecdf;color:#30221b;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.45)}
+.photo-viewer h3{margin:0 42px 16px;font:500 27px 'Cormorant Garamond',serif;color:#542a22}
+.photo-viewer>img{display:block;width:100%;max-height:68svh;object-fit:contain;background:#e8ddce}
+.photo-viewer-placeholder{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(145deg,#d7c4a5,#8c6c50);color:white;font-family:'Cormorant Garamond',serif;font-size:22px}
+.photo-viewer-placeholder small{font:10px Montserrat,sans-serif}
+.integrantes-dos-columnas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-top:7px;min-height:0;flex:1}
+.integrantes-columna{min-width:0;display:flex;flex-direction:column;border-right:1px solid #d8c9b5;padding-right:8px}
+.integrantes-columna:last-child{border-right:0;padding:0 0 0 4px}
+.integrantes-columna h4{margin:0 0 5px;color:#86663e;font-size:9px;letter-spacing:1px;text-transform:uppercase}
+.integrantes-columna .lista-integrantes{columns:1;margin:0;padding-left:15px;font-size:8px;line-height:1.42;overflow-wrap:anywhere;overflow-y:auto;min-height:0;max-height:100%}
+.foto-integrantes-btn{margin-top:auto;min-height:34px;padding:7px 5px;border:1px solid #b89455;background:transparent;color:#76563b;font-size:8px;line-height:1.2;cursor:pointer;touch-action:manipulation}
+.foto-integrantes-btn span{padding-left:3px}
+.foto-grupal-cuerpo{width:100%;height:clamp(125px,24%,185px)!important;margin:4px 0 10px!important}
+.cuerpo-pagina{padding-bottom:18px}
+.cuerpo-pagina .integrantes-cuerpo{display:flex;flex-direction:column;flex:1;overflow:hidden}
+.cuerpo-pagina .integrantes-titulo{flex:none}
+.cuerpo-pagina .integrantes-pendientes{font-size:9px;line-height:1.35}
+.logo-agradecimientos{width:clamp(58px,16%,92px);height:auto;object-fit:contain;align-self:center;margin-bottom:8px}
+.redes-sociales{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:15px}
+.redes-sociales a{color:#9c7947;text-decoration:none;border-bottom:1px solid currentColor;padding:5px 2px;font-size:10px;letter-spacing:.5px}
+.redes-pendientes{color:#927b62;font-size:8px;font-style:italic}
+.grupos-invitados-pagina{padding-top:35px}
+.grupos-invitados-lista{display:flex;flex-direction:column;gap:12px;margin:10px 0}
+.grupo-invitado{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid #d8c9b5}
+.grupo-invitado-numero{font:italic 19px 'Cormorant Garamond',serif;color:#b89455}
+.grupo-invitado h3{margin:0 0 4px;font:600 17px 'Cormorant Garamond',serif;color:#542a22}
+.grupo-invitado p{margin:0;color:#806c5b;font-size:9px;line-height:1.45}
+.grupo-foto-placeholder{min-height:88px;display:grid;place-items:center;padding:12px;background:linear-gradient(145deg,#d7c4a5,#8c6c50);color:#fff0d1;text-align:center;font:italic 15px 'Cormorant Garamond',serif}
+.theme-dark .integrantes-columna{border-color:rgba(215,180,108,.28)}
+.theme-dark .integrantes-columna h4,.theme-dark .foto-integrantes-btn{color:#d0ad70}
+.theme-dark .foto-integrantes-btn{border-color:rgba(215,180,108,.5)}
+.theme-dark .grupo-invitado{border-color:rgba(215,180,108,.25)}
+.theme-dark .grupo-invitado h3{color:#e8ca8d}
+.theme-dark .grupo-invitado p{color:#c2a987}
+.modal-dark{background:#211816!important;color:#f0e4d2!important}
+.modal-dark .modal-content h2,.modal-dark h3{color:#e8ca8d!important}
+.modal-dark .modal-description,.modal-dark .modal-meta strong{color:#e0d2c0!important}
+.modal-dark .modal-region,.modal-dark .modal-note{color:#c2a987!important}
+.modal-dark .modal-meta{border-color:rgba(215,180,108,.28)!important}
+@media(max-width:600px){
+  .modal-backdrop{align-items:flex-end;padding:0;background:rgba(10,6,5,.66);backdrop-filter:blur(3px)}
+  .dance-modal{width:100%;max-width:none;max-height: min(91svh, 820px);height:auto;border-radius:18px 18px 0 0;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -12px 40px rgba(0,0,0,.28);animation:sheetIn .24s ease-out}
+  .modal-handle{display:block;width:42px;height:4px;border-radius:10px;background:#b9a68d;opacity:.8;margin:9px auto 5px;flex:none}
+  .modal-close{top:13px;right:13px;width:40px;height:40px}
+  .modal-photo{height:clamp(135px,23svh,205px);min-height:135px;max-height:205px}
+  .modal-content{padding:17px 20px 20px}
+  .modal-content h2{font-size:clamp(29px,8vw,36px);padding-right:34px}
+  .modal-description{font-size:16px;line-height:1.42}
+  .modal-meta{margin-top:10px;padding-top:8px;gap:3px}
+  .modal-meta span{font-size:8px}
+  .modal-meta strong{font-size:11px;line-height:1.4;overflow-wrap:anywhere}
+  .modal-note{font-size:9px;line-height:1.4;margin-bottom:4px}
+  .modal-bottom-close{display:block;flex:none;width:calc(100% - 32px);min-height:44px;margin:0 16px 10px;border:1px solid #b89455;background:#542a22;color:#fff4df;font-size:11px;letter-spacing:.7px;text-transform:uppercase;touch-action:manipulation}
+  .photo-viewer{width:100%;max-height:91svh;border-radius:18px 18px 0 0;padding:26px 14px calc(14px + env(safe-area-inset-bottom))}
+  .photo-viewer h3{font-size:24px}
+  .photo-viewer>img{max-height:65svh}
+  .photo-viewer .modal-close{top:10px;right:12px}
+  .foto-grupal-cuerpo{height:clamp(115px,21svh,155px)!important}
+  .integrantes-dos-columnas{gap:7px}
+  .integrantes-columna{padding-right:5px}
+  .integrantes-columna:last-child{padding-left:3px}
+  .integrantes-columna .lista-integrantes{font-size:7.2px;line-height:1.34;padding-left:13px}
+  .foto-integrantes-btn{font-size:7px;min-height:32px}
+  .grupos-invitados-pagina{padding:31px 19px 16px}
+  .grupo-invitado{padding:8px 0;gap:7px}
+  .grupo-invitado h3{font-size:15px}
+  .grupo-invitado p{font-size:8px}
+  .grupo-foto-placeholder{min-height:75px;font-size:13px}
+}
+@keyframes sheetIn{from{transform:translateY(24px);opacity:.7}to{transform:translateY(0);opacity:1}}
+@media(prefers-reduced-motion:reduce){.dance-modal{animation:none}}
+
+/* Responsive refinements for compact phones, large phones, tablets and desktop */
+.marco-portada{width:calc(100% - 28px);height:calc(100% - 28px);min-height:0;margin:14px;padding:clamp(12px,3.5%,24px);overflow:hidden;gap:clamp(2px,1.2%,10px)}
+.marco-portada .logo-libro{display:block;width:clamp(58px,19%,94px);max-width:100%;max-height:clamp(54px,15%,92px);height:auto;flex:0 1 auto;object-fit:contain;margin:0 auto 7px}
+.marco-portada .titulo-libro{width:min(100%,280px);max-height:clamp(95px,30%,190px);margin:clamp(6px,2%,14px) auto 2px;flex:0 1 auto}
+.marco-portada .ornamento-linea{margin:7px auto;width:58%;flex:none}
+.marco-portada .texto-portada{margin:4px 0;font-size:clamp(8px,1.4vw,11px)}
+.marco-portada .fechas-portada{font-size:clamp(8px,1.3vw,10px);line-height:1.55;margin:4px 0}
+.marco-portada .lugar-portada{font-size:clamp(12px,2.2vw,17px);margin:3px 0}
+.logo-intermedio{display:block;width:clamp(64px,22%,112px);max-height:105px;object-fit:contain;margin:0 auto 18px;flex:none}
+.marco-intermedio{padding:clamp(16px,5%,32px);overflow:hidden}
+.personas-apoyo{margin:5px 0 0}
+.personas-apoyo>h3,.elenco-resumen>h3{margin:0 0 3px;color:#86663e;font:600 10px Montserrat,sans-serif;letter-spacing:.5px;text-align:left;text-transform:uppercase}
+.personas-apoyo .creditos-lista{margin:2px 0 5px}
+.personas-apoyo .creditos-lista p{padding:4px 0;gap:1px;font-size:8px}
+.personas-apoyo .creditos-lista strong{font-size:7px}
+.elenco-resumen{padding-top:5px;border-top:1px solid #d8c9b5}
+.elenco-resumen p{margin:2px 0;color:#59483b;font-size:8px}
+.elenco-resumen small{display:block;color:#927b62;font-size:7px;line-height:1.35}
+.auspicio-bloque{margin:12px auto 4px;padding:10px 12px;max-width:290px;border-top:1px solid #b89455;border-bottom:1px solid #b89455}
+.auspicio-bloque .etiqueta{margin:0;font-size:7px}
+.auspiciador{margin:4px 0!important;font:700 23px Montserrat,sans-serif!important;letter-spacing:3px;color:#9c7947!important}
+.auspicio-texto{margin:0;color:#806c5b;font:italic 12px 'Cormorant Garamond',serif}
+.theme-dark .elenco-resumen{border-color:rgba(215,180,108,.28)}
+.theme-dark .elenco-resumen p,.theme-dark .elenco-resumen small{color:#e0d2c0}
+.theme-dark .personas-apoyo>h3,.theme-dark .elenco-resumen>h3{color:#d0ad70}
+.theme-dark .auspicio-bloque{border-color:rgba(215,180,108,.5)}
+.theme-dark .auspicio-texto{color:#c2a987}
+
+/* Modal layers are teleported to body so the page-flip canvas cannot cover them. */
+html.dialog-open,html.dialog-open body{overflow:hidden!important;overscroll-behavior:none}
+.modal-backdrop{position:fixed!important;inset:0!important;z-index:2147483000!important;display:flex;align-items:center;justify-content:center;box-sizing:border-box;isolation:isolate;touch-action:pan-y}
+.dance-modal-backdrop{pointer-events:auto}
+.dance-modal{width:min( min(680px, calc(100vw - 32px)), 100%);max-height:min(88dvh,780px);max-height:min(88svh,780px);overflow:hidden;display:flex;flex-direction:column;touch-action:pan-y}
+.modal-scroll{flex:1 1 auto;min-height:0;max-height:100%;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;scrollbar-width:thin}
+.modal-photo{width:100%;height:clamp(145px,29svh,280px);min-height:0;max-height:none;flex:0 0 auto}
+.modal-content{min-width:0;overflow-wrap:anywhere}
+.modal-close,.modal-bottom-close,.foto-integrantes-btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.photo-modal-backdrop{padding:clamp(10px,3vw,24px)}
+.photo-viewer{width:min(620px,calc(100vw - 28px));max-height: min(88svh,780px);overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.photo-viewer>img{width:100%;height:auto;max-height:min(68svh,620px);object-fit:contain}
+.modal-dark.photo-viewer{background:#211816!important;color:#f0e4d2!important}
+.modal-dark.photo-viewer h3{color:#e8ca8d!important}
+.modal-dark .photo-viewer-placeholder{background:linear-gradient(145deg,#594333,#30221d)}
+.danza-fila{min-height:36px;touch-action:pan-y;position:relative;z-index:2;-webkit-tap-highlight-color:transparent}
+.danza-fila:active{background:rgba(184,148,85,.2)}
+.libro-contenedor{min-height:0;flex:0 1 auto}
+.libro{max-width:840px;min-width:0;touch-action:pan-y}
+@media(max-width:767px){
+  .seccion-libro{height:100svh;min-height:100svh;max-height:100svh;overflow:hidden;justify-content:flex-start;padding:calc(7px + env(safe-area-inset-top)) 7px calc(7px + env(safe-area-inset-bottom))}
+  .barra-libro{flex:0 0 auto;grid-template-columns:minmax(48px,1fr) minmax(90px,1.2fr) minmax(76px,1fr);gap:5px;width:100%;margin:0 0 7px}
+  .boton-cerrar{padding:7px 8px;min-height:34px}
+  .progreso-wrap{min-width:0;gap:5px;font-size:8px}
+  .controles-libro{gap:4px}
+  .controles-libro button{width:32px;height:32px;min-width:32px}
+  .libro-contenedor{width:100%;flex:1 1 auto;min-height:0;margin:0;align-items:center;overflow:visible}
+  .libro{width:min(calc(100vw - 22px),420px);height:min(calc(100svh - 112px - env(safe-area-inset-top) - env(safe-area-inset-bottom)),640px);max-height:100%;margin:auto}
+  .libro .pagina{max-width:100%;max-height:100%;}
+  .flecha-lateral{width:28px;height:40px;z-index:20}
+  .instruccion-libro{flex:0 0 auto;margin:5px 0 0;font-size:8px;line-height:1.25}
+  .contenido-pagina{min-width:0}
+  .programa-pagina{padding:clamp(17px,4svh,28px) clamp(12px,4vw,20px) 12px}
+  .grupo-titulo{font-size:clamp(6px,1.5vw,8px);letter-spacing:.25px;overflow-wrap:anywhere}
+  .danza-fila{min-height:clamp(29px,5.1svh,38px);gap:5px;padding:3px 1px}
+  .danza-info strong{font-size:clamp(11px,3.5vw,14px)}
+  .danza-info small{font-size:clamp(5px,1.45vw,7px);line-height:1.2;overflow-wrap:anywhere}
+  .danza-numero{width:17px;font-size:14px}
+  .danza-ver{font-size:13px}
+  .foto-grupal-cuerpo{height:clamp(90px,17svh,145px)!important}
+  .integrantes-columna .lista-integrantes{font-size:clamp(6px,1.8vw,8px);line-height:1.3}
+  .foto-integrantes-btn{font-size:clamp(6px,1.7vw,8px);min-height:34px}
+  .equipo-pagina{padding:clamp(18px,3svh,28px) 17px 12px}
+  .equipo-pagina h2{font-size:clamp(24px,7vw,32px)}
+  .equipo-pagina .equipo-foto{height:clamp(75px,14svh,115px);margin:5px 0}
+  .equipo-pagina>.texto-pagina{font-size:clamp(9px,2.4vw,12px);line-height:1.28;margin:3px 0}
+  .personas-apoyo>h3,.elenco-resumen>h3{font-size:clamp(7px,1.8vw,9px)}
+  .personas-apoyo .creditos-lista p{padding:3px 0;font-size:clamp(7px,1.8vw,8px)}
+  .personas-apoyo .creditos-lista strong{font-size:clamp(6px,1.6vw,7px)}
+  .elenco-resumen p{font-size:7px}
+  .elenco-resumen small{font-size:6px}
+  .logo-intermedio{width:clamp(62px,22%,100px);max-height:90px;margin-bottom:12px}
+}
+@media(max-width:380px){
+  .barra-libro{grid-template-columns:42px minmax(75px,1fr) 74px}
+  .boton-cerrar{padding:6px 5px;font-size:9px}
+  .controles-libro button{width:29px;height:29px;min-width:29px}
+  .libro{width:calc(100vw - 18px);height:min(calc(100svh - 108px - env(safe-area-inset-top) - env(safe-area-inset-bottom)),600px)}
+  .modal-backdrop{padding:0}
+  .dance-modal{width:100%;max-height:calc(94svh - env(safe-area-inset-bottom));border-radius:16px 16px 0 0;padding-bottom:env(safe-area-inset-bottom)}
+  .modal-photo{height:clamp(120px,20svh,175px)}
+  .modal-content{padding:14px 16px 17px}
+  .modal-content h2{font-size:29px}
+  .modal-description{font-size:15px}
+  .modal-bottom-close{min-height:46px;margin-bottom:7px}
+  .photo-viewer{width:100%;max-height:94svh;border-radius:16px 16px 0 0;padding:24px 12px calc(12px + env(safe-area-inset-bottom))}
+}
+@media(min-width:768px) and (max-width:1100px){
+  .seccion-libro{padding:14px 12px 18px}
+  .libro{width:min(100%,760px)}
+  .contenido-pagina{padding-left:clamp(20px,3vw,32px);padding-right:clamp(20px,3vw,32px)}
+}
+@media(max-height:620px) and (max-width:767px){
+  .barra-libro{margin-bottom:4px}
+  .libro{height:calc(100svh - 96px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}
+  .instruccion-libro{margin-top:3px}
+  .modal-photo{height:110px}
+  .modal-content{padding-top:10px;padding-bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){.modal-enter-active,.modal-leave-active,.dance-modal{transition:none!important;animation:none!important}}
+
+/* v3 · Mobile-first polish, page 07 legibility, modal isolation */
+.libro-modal-abierto { pointer-events: none !important; }
+.libro-modal-abierto .pagina { pointer-events: none !important; }
+.grupos-invitados-pagina { min-height:0; overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:#b89455 transparent; }
+.grupos-invitados-pagina .grupos-invitados-lista { min-height:0; flex-shrink:0; }
+.grupos-invitados-pagina .grupo-invitado { min-width:0; }
+.grupos-invitados-pagina .grupo-invitado>div { min-width:0; overflow-wrap:anywhere; }
+.grupos-invitados-pagina .grupo-invitado h3 { line-height:1.2; overflow-wrap:anywhere; }
+.grupos-invitados-pagina .grupo-invitado p { line-height:1.38; }
+.grupos-invitados-pagina .grupo-foto-placeholder { flex-shrink:0; }
+.grupos-invitados-pagina .pie-pagina { flex-shrink:0; }
+.dance-modal-backdrop { overscroll-behavior:none; }
+.dance-modal { position:relative; min-height:0; }
+.dance-modal .modal-scroll { overflow-y:auto!important; overscroll-behavior:contain; }
+.dance-modal .modal-bottom-close { flex-shrink:0; }
+.dance-modal .modal-close { z-index:15; }
+@media(max-width:767px) {
+  .grupos-invitados-pagina { padding:clamp(17px,3svh,28px) clamp(13px,4vw,19px) 14px!important; }
+  .grupos-invitados-pagina h2 { font-size:clamp(23px,6.3vw,31px); margin:3px 0 2px; line-height:1.05; }
+  .grupos-invitados-pagina .separador { margin:3px 0 6px; }
+  .grupos-invitados-pagina>.texto-pagina { font-size:clamp(11px,2.7vw,13px); line-height:1.35; margin:3px 0 7px; }
+  .grupos-invitados-pagina .grupo-invitado { padding:clamp(6px,1.1svh,9px) 0; gap:8px; }
+  .grupos-invitados-pagina .grupo-invitado h3 { font-size:clamp(13px,3.5vw,16px); margin:0 0 3px; }
+  .grupos-invitados-pagina .grupo-invitado p { font-size:clamp(9px,2.4vw,11px); margin:0; }
+  .grupos-invitados-pagina .grupo-foto-placeholder { min-height:clamp(48px,10svh,78px); margin-top:7px; font-size:clamp(10px,2.8vw,13px); }
+  .dance-modal-backdrop { align-items:flex-end!important; padding:0!important; }
+  .dance-modal { width:100%!important; max-width:none!important; height:min(92dvh,760px); max-height:calc(100dvh - env(safe-area-inset-top) - 12px)!important; border-radius:18px 18px 0 0; padding-bottom:env(safe-area-inset-bottom); box-sizing:border-box; }
+  .dance-modal .modal-scroll { flex:1 1 auto; min-height:0; }
+  .dance-modal .modal-bottom-close { display:block; margin-bottom:12px; min-height:48px; }
+  .dance-modal .modal-photo { height:clamp(115px,22dvh,200px); }
+}
+@media(max-width:380px), (max-height:650px) and (max-width:767px) {
+  .grupos-invitados-pagina .grupo-foto-placeholder { min-height:42px; }
+  .grupos-invitados-pagina .grupo-invitado { padding:5px 0; }
+  .dance-modal { height:96dvh; }
 }
