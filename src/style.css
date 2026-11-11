@@ -384,3 +384,80 @@ html.dialog-open,html.dialog-open body{overflow:hidden!important;overscroll-beha
 .programa-pagina .danza-info { flex: 1 1 auto; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; pointer-events: none !important; min-width: 0; }
 .programa-pagina .danza-nombre { flex: 0 0 auto !important; align-self: flex-start; width: max-content !important; max-width: 100%; display: inline !important; padding: 0 !important; margin: 0 !important; min-height: 0 !important; line-height: 1.25; pointer-events: auto !important; }
 .programa-pagina .danza-numero { pointer-events: none !important; }
+
+/* V7: controles discretos y zoom nativo prioritario */
+.libro, .libro-contenedor, .pagina { touch-action: pan-x pan-y pinch-zoom !important; }
+.navegacion-inferior {display:flex;justify-content:center;align-items:center;gap:clamp(10px,4vw,28px);margin:12px auto 0;width:100%;max-width:390px;flex-shrink:0;}
+.navegacion-inferior button {display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:42px;min-width:105px;padding:7px 14px;border:1px solid rgba(185,148,85,.7);border-radius:999px;background:rgba(29,15,15,.83);color:#f4e6c9;font-size:12px;font-weight:600;letter-spacing:.3px;cursor:pointer;touch-action:manipulation;}
+.navegacion-inferior button span {font-size:24px;line-height:.8;}
+.nav-indicador{font-size:11px;color:#d7b46c;white-space:nowrap;}
+.controles-libro .nav-top{width:36px;height:36px;min-width:36px;border-radius:50%;font-size:27px;display:inline-flex;align-items:center;justify-content:center;}
+.controles-libro button:disabled,.navegacion-inferior button:disabled{opacity:.28;cursor:not-allowed;}
+.theme-light .navegacion-inferior button{background:#fff9ef;color:#5b342a;border-color:#b89455;}
+@media(max-width:767px){.barra-libro{grid-template-columns:minmax(40px,1fr) minmax(62px,90px) auto;gap:4px;}.controles-libro{gap:4px;}.controles-libro .nav-top{width:34px;height:34px;min-width:34px;font-size:25px;}.controles-libro .theme-toggle{width:34px;height:34px;min-width:34px;font-size:17px;}.navegacion-inferior{margin-top:8px;gap:12px;}.navegacion-inferior button{min-height:40px;min-width:100px;padding:6px 10px;}.instruccion-libro{margin-top:5px!important;}}
+@media(max-width:360px){.controles-libro .nav-top{width:30px;height:30px;min-width:30px;}.controles-libro .theme-toggle{width:30px;height:30px;min-width:30px;}.navegacion-inferior button{min-width:90px;}}
+
+/* V8: controles flotantes, fuera de la superficie interactiva del libro. */
+.navegacion-inferior { display:none !important; }
+.libro-contenedor { position:relative; }
+.navegacion-lateral { position:absolute; inset:0; pointer-events:none; z-index:12; }
+.nav-lateral {
+  position:absolute; top:50%; transform:translateY(-50%);
+  display:flex; align-items:center; justify-content:center;
+  width:clamp(34px,4.2vw,46px); height:clamp(54px,8vh,72px);
+  padding:0; border:1px solid rgba(215,180,108,.42); border-radius:16px;
+  background:rgba(35,20,21,.28); color:#f7e5be;
+  backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
+  font-size:36px; line-height:1; cursor:pointer; pointer-events:auto;
+  touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+  transition:background .2s ease,opacity .2s ease;
+}
+.nav-lateral-prev { left:0; }
+.nav-lateral-next { right:0; }
+.nav-lateral:hover { background:rgba(60,29,32,.62); }
+.nav-lateral:disabled { opacity:.18; cursor:default; pointer-events:none; }
+.theme-light .nav-lateral { background:rgba(250,242,227,.55);color:#613b32;border-color:rgba(150,110,63,.45); }
+.theme-light .nav-lateral:hover { background:rgba(250,242,227,.88); }
+@media(max-width:767px){
+  .nav-lateral { width:34px; height:56px; font-size:32px; border-radius:12px; }
+  .nav-lateral-prev { left:0; }
+  .nav-lateral-next { right:0; }
+  .libro-contenedor { padding:0 10px; box-sizing:border-box; }
+  .libro { max-width:100%; }
+}
+@media(max-width:360px){
+  .nav-lateral { width:29px; height:50px; font-size:28px; }
+  .libro-contenedor { padding:0 6px; }
+}
+
+/* V10: controles discretos que mantienen el texto del programa visible. */
+.nav-lateral {
+  background:rgba(35,20,21,.12);
+  border-color:rgba(215,180,108,.26);
+  opacity:.58;
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+  transition:opacity .2s ease,background .2s ease,transform .2s ease;
+}
+.nav-lateral:hover,.nav-lateral:focus-visible {
+  opacity:1; background:rgba(35,20,21,.62);
+}
+.nav-lateral:active { transform:translateY(-50%) scale(.96); }
+.theme-light .nav-lateral { background:rgba(250,242,227,.2); border-color:rgba(150,110,63,.25); }
+.theme-light .nav-lateral:hover,.theme-light .nav-lateral:focus-visible { background:rgba(250,242,227,.85); }
+@media (max-width:767px) {
+  .nav-lateral { width:30px; height:52px; font-size:30px; opacity:.48; border-radius:11px; }
+  .nav-lateral:active { opacity:1; }
+}
+@media (prefers-reduced-motion: reduce) { .nav-lateral { transition:none; } }
+
+/* V11: giro 3D de hoja visible al pulsar las flechas; sin interceptar zoom ni taps. */
+.libro-contenedor{perspective:1800px;perspective-origin:50% 50%}
+.giro-hoja{position:absolute;z-index:9;pointer-events:none;transform-style:preserve-3d;perspective:1600px;filter:drop-shadow(0 10px 13px rgba(0,0,0,.18))}
+.giro-hoja-cara{position:absolute;inset:0;transform-style:preserve-3d;backface-visibility:hidden;overflow:hidden;background:#f4ecdf;box-shadow:inset -10px 0 22px rgba(55,30,15,.14),6px 4px 15px rgba(0,0,0,.24);transition:transform 880ms cubic-bezier(.38,.03,.23,1),box-shadow 880ms ease}
+.giro-hoja .giro-hoja-contenido{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;margin:0!important;transform:none!important;overflow:hidden;pointer-events:none!important;visibility:visible!important;opacity:1!important}
+.giro-next .giro-hoja-cara{transform-origin:left center;transform:rotateY(0deg)}
+.giro-next.giro-activo .giro-hoja-cara{transform:rotateY(-179deg);box-shadow:inset -18px 0 32px rgba(55,30,15,.32),14px 8px 25px rgba(0,0,0,.28)}
+.giro-prev .giro-hoja-cara{transform-origin:right center;transform:rotateY(0deg)}
+.giro-prev.giro-activo .giro-hoja-cara{transform:rotateY(179deg);box-shadow:inset 18px 0 32px rgba(55,30,15,.32),-14px 8px 25px rgba(0,0,0,.28)}
+@media(prefers-reduced-motion:reduce){.giro-hoja-cara{transition-duration:300ms}}
