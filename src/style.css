@@ -1005,3 +1005,252 @@ html.dialog-open,html.dialog-open body{overflow:hidden!important;overscroll-beha
  .identidad-pagina .logo-identidad-v27 {width:clamp(60px,20%,84px);max-height:84px;margin-left:10px;}
  .equipo-pagina .logo-equipo-v27 {width:62px;height:56px;margin:3px auto 5px;}
 }
+
+
+/* V28 — Composición editorial y pies consistentes */
+/* Página de historia: el contenido empieza un poco más abajo y mantiene respiración inferior. */
+.historia-40 {padding-top:clamp(48px,9%,74px) !important; padding-bottom:clamp(34px,7%,56px) !important;}
+/* Página de identidad: el primer párrafo rodea realmente al logo. */
+.identidad-pagina .logo-identidad-v27 {float:right !important;display:block !important;width:clamp(88px,24%,124px) !important;max-height:126px !important;margin:0 0 10px 15px !important;}
+.identidad-pagina .texto-pagina {display:block !important;}
+.identidad-pagina .texto-pagina::after {content:"";display:table;clear:both;}
+/* Un footer con espacio reservado: nunca tapa el texto. */
+.gala-footer-bandera {padding-right:clamp(78px,21%,112px) !important;align-items:center !important;}
+.gala-footer-bandera .logo-footer-v26 {width:clamp(70px,20%,100px) !important;height:76px !important;bottom:-8px !important;right:0 !important;object-fit:contain !important;}
+.gala-footer-bandera.footer-solo-bandera-v28 {padding-right:0 !important;align-items:center !important;}
+.gala-footer-bandera.footer-solo-bandera-v28 > span:first-child {width:100% !important;max-width:100% !important;}
+.gala-footer-bandera.footer-solo-bandera-v28 .sello-bandera {width:76% !important;}
+/* Repertorio: jerarquía de títulos coherente, sin huecos forzados. */
+.programa-definitivo {justify-content:flex-start !important;}
+.programa-definitivo > .etiqueta {margin-top:0 !important;margin-bottom:4px !important;}
+.programa-definitivo > h2 {margin-top:0 !important;margin-bottom:12px !important;}
+.programa-definitivo .grupo-titulo {font-size:clamp(10px,1.65vw,13px) !important;line-height:1.25 !important;}
+.programa-definitivo .grupo-programa {margin-block:6px !important;}
+.programa-definitivo .danza-fila {padding-block:clamp(3px,.65vh,6px) !important;}
+/* Página de músicos: logo grande bajo el título, sin duplicarlo en el footer. */
+.logo-invitados-v28 {display:block;width:clamp(92px,24%,135px);height:clamp(74px,15vh,112px);object-fit:contain;margin:4px auto 8px;flex-shrink:0;}
+/* Las fotos de todos los cuerpos conservan su proporción y muestran el grupo completo. */
+.foto-grupal-cuerpo img,.foto-cuerpo img {object-fit:contain !important;object-position:center center !important;}
+@media(max-width:767px){
+ .historia-40 {padding-top:42px !important;padding-bottom:32px !important;}
+ .identidad-pagina .logo-identidad-v27 {width:clamp(68px,24%,94px) !important;max-height:94px !important;margin-left:10px !important;}
+ .gala-footer-bandera {padding-right:65px !important;}
+ .gala-footer-bandera .logo-footer-v26 {width:62px !important;height:60px !important;bottom:-6px !important;}
+ .gala-footer-bandera.footer-solo-bandera-v28 {padding-right:0 !important;}
+ .programa-definitivo .grupo-titulo {font-size:10px !important;}
+ .programa-definitivo .danza-fila {padding-block:2px !important;}
+ .logo-invitados-v28 {width:88px;height:72px;margin:3px auto 5px;}
+}
+
+/* V29 — Pies de página y composición solicitada */
+/* Los dos estilos comparten altura y espacio de seguridad. */
+.gala-footer-bandera {bottom:12px !important;left:clamp(19px,5%,32px) !important;right:clamp(19px,5%,32px) !important;height:35px !important;}
+.gala-footer-bandera:not(.footer-solo-bandera-v28) {padding-right:clamp(70px,20%,108px) !important;}
+.gala-footer-bandera:not(.footer-solo-bandera-v28) .sello-bandera {width:100% !important;}
+.gala-footer-bandera:not(.footer-solo-bandera-v28) .logo-footer-v26 {right:0 !important;bottom:0 !important;width:clamp(64px,18%,92px) !important;height:60px !important;}
+.gala-footer-bandera.footer-solo-bandera-v28 {padding-right:0 !important;}
+.gala-footer-bandera.footer-solo-bandera-v28 .sello-bandera {width:76% !important;margin-inline:auto !important;}
+.pagina-con-footer > .contenido-pagina {height:calc(100% - 74px) !important;max-height:calc(100% - 74px) !important;overflow-y:auto !important;overflow-x:hidden !important;}
+/* Página 2: imagen dentro del párrafo; el texto la rodea. */
+.historia-intro-v29 {display:block !important;}
+.historia-intro-v29::after {content:'';display:block;clear:both;}
+.logo-historia-v29 {float:right;width:clamp(72px,21%,112px);max-height:118px;height:auto;object-fit:contain;margin:2px 0 9px 14px;}
+/* Página 3: ya no hay logo intercalado entre párrafos. */
+/* Página 4: título con margen superior, sello centrado al final del repertorio. */
+.programa-definitivo:has(.logo-repertorio-v29) > .etiqueta {margin-top:clamp(12px,3vh,23px) !important;}
+.logo-repertorio-v29 {display:block;align-self:center;width:clamp(60px,16%,90px);height:clamp(48px,9vh,76px);object-fit:contain;margin:auto auto 6px;flex-shrink:0;}
+/* Página 7: agrupaciones en formato editorial, sin logos. */
+.invitados-lista-v29 {display:flex;flex-direction:column;gap:clamp(8px,2vh,16px);margin-top:clamp(14px,3vh,24px);}
+.invitado-fila-v29 {display:flex;align-items:center;gap:12px;padding:10px 6px 12px;border-bottom:1px solid rgba(184,148,85,.5);}
+.invitado-fila-v29 h3 {font-size:clamp(13px,2.3vw,18px);line-height:1.25;margin:0;text-align:left;color:inherit;font-weight:600;}
+.invitado-numero-v29 {font-size:12px;color:#d2b77a;font-weight:700;min-width:25px;}
+/* Agradecimientos: enlaces más arriba y alejados del pie. */
+.agradecimiento-pagina .redes-sociales {margin-bottom:clamp(20px,4vh,35px) !important;flex-shrink:0;}
+@media(max-width:767px) {
+ .gala-footer-bandera {bottom:9px !important;height:30px !important;}
+ .pagina-con-footer > .contenido-pagina {height:calc(100% - 64px) !important;max-height:calc(100% - 64px) !important;}
+ .logo-historia-v29 {width:clamp(60px,21%,85px);max-height:90px;margin-left:10px;}
+ .logo-repertorio-v29 {width:58px;height:48px;margin-bottom:2px;}
+ .invitados-fila-v29 {padding:7px 2px 9px;gap:8px;}
+ .invitado-fila-v29 h3 {font-size:12px;}
+ .agradecimiento-pagina .redes-sociales {margin-bottom:24px !important;}
+}
+
+
+/* V30 — ajustes finales solicitados */
+/* Portada interior: mayor separación entre el nombre institucional y la imagen del título. */
+.marco-portada .eyebrow { margin-bottom:clamp(15px,3.5%,25px) !important; }
+.marco-portada .titulo-libro { margin-top:0 !important; }
+/* Historia (página 2): logo grande flotante y texto envolvente. */
+.historia-40 .logo-historia-v29 { width:clamp(110px,31%,164px) !important; max-height:165px !important; height:auto !important; margin:0 0 12px 16px !important; }
+/* Footer: el borde inferior real de la imagen y de la banda coinciden.
+   El logo no puede salirse hacia arriba por desplazamientos negativos. */
+.gala-footer-bandera:not(.footer-solo-bandera-v28) { padding-right:clamp(82px,22%,112px) !important; }
+.gala-footer-bandera:not(.footer-solo-bandera-v28) .logo-footer-v26 { position:absolute !important; bottom:0 !important; right:0 !important; height:48px !important; width:clamp(72px,20%,104px) !important; object-fit:fill !important; object-position:bottom right !important; }
+/* La banda está al fondo y el logo al mismo nivel. */
+.gala-footer-bandera .sello-bandera { flex-shrink:0; }
+/* Primera parte (página 4): el sello se coloca al final del espacio de contenido,
+   justo encima de la banda, no a continuación del título. */
+.programa-definitivo:has(.logo-repertorio-v29) { position:relative; padding-bottom:70px !important; }
+.programa-definitivo .logo-repertorio-v29 { position:absolute !important; bottom:2px !important; left:50% !important; transform:translateX(-50%); margin:0 !important; width:clamp(66px,17%,96px) !important; height:60px !important; }
+/* Página 7: logo al pie del contenido, por encima de la bandera centrada. */
+.invitados-logos-pagina { position:relative; padding-bottom:80px !important; }
+.logo-invitados-inferior-v30 { position:absolute; left:50%; bottom:6px; transform:translateX(-50%); width:clamp(76px,20%,112px); height:68px; object-fit:contain; }
+/* Fotografías de los cuerpos: sin marco, relleno ni fondo decorativo. */
+.cuerpo-pagina .foto-grupal-cuerpo, .theme-dark .cuerpo-pagina .foto-grupal-cuerpo { padding:0 !important; border:0 !important; box-shadow:none !important; background:transparent !important; }
+.cuerpo-pagina .foto-grupal-cuerpo img { background:transparent !important; }
+/* Separación entre la lista de integrantes y los botones. */
+.cuerpo-pagina .foto-integrantes-btn { margin-top:clamp(14px,2.5vh,22px) !important; }
+/* Modal: foto y botón Cerrar nunca quedan pegados. */
+.photo-viewer > img, .photo-viewer > .photo-viewer-placeholder { margin-bottom:20px !important; }
+.photo-viewer .modal-bottom-close { margin-top:12px !important; }
+@media(max-width:767px) {
+ .historia-40 .logo-historia-v29 { width:clamp(92px,30%,124px) !important; max-height:126px !important; margin-left:10px !important; }
+ .gala-footer-bandera:not(.footer-solo-bandera-v28) .logo-footer-v26 { width:70px !important; height:42px !important; bottom:0 !important; }
+ .programa-definitivo:has(.logo-repertorio-v29) { padding-bottom:58px !important; }
+ .programa-definitivo .logo-repertorio-v29 { width:62px !important; height:48px !important; }
+ .invitados-logos-pagina { padding-bottom:70px !important; }
+ .logo-invitados-inferior-v30 { width:72px; height:58px; }
+ .cuerpo-pagina .foto-integrantes-btn { margin-top:12px !important; }
+ .photo-viewer > img, .photo-viewer > .photo-viewer-placeholder { margin-bottom:18px !important; }
+}
+
+/* V31 — alineación del repertorio, botones y pie de página */
+/* Los sellos de páginas 4 y 7 permanecen al final del área útil, encima del footer. */
+.programa-definitivo:has(.logo-repertorio-v29) .logo-repertorio-v29 {
+  bottom:0 !important;
+  width:clamp(82px,22%,116px) !important;
+  height:clamp(66px,11svh,86px) !important;
+  object-fit:contain !important;
+}
+.invitados-logos-pagina .logo-invitados-inferior-v30 {
+  bottom:0 !important;
+  width:clamp(88px,23%,124px) !important;
+  height:clamp(68px,12svh,90px) !important;
+}
+/* Bandera y logo: se aprovecha mejor el ancho disponible reduciendo la reserva lateral. */
+.gala-footer-bandera:not(.footer-solo-bandera-v28) {
+  padding-right:clamp(64px,18%,92px) !important;
+}
+.gala-footer-bandera:not(.footer-solo-bandera-v28) .logo-footer-v26 {
+  right:0 !important;
+  bottom:0 !important;
+  width:clamp(64px,18%,92px) !important;
+  height:48px !important;
+  object-fit:contain !important;
+  object-position:right bottom !important;
+}
+/* Ambas columnas reservan una fila idéntica para sus botones, incluso con listas desiguales. */
+.cuerpo-pagina:not(.solo-mujeres) .integrantes-dos-columnas {
+  align-items:stretch !important;
+  min-height:0 !important;
+}
+.cuerpo-pagina:not(.solo-mujeres) .integrantes-columna {
+  display:grid !important;
+  grid-template-rows:auto minmax(0,1fr) auto !important;
+  align-items:stretch !important;
+  min-height:0 !important;
+  padding-bottom:5px !important;
+}
+.cuerpo-pagina:not(.solo-mujeres) .integrantes-columna .lista-integrantes {
+  min-height:0 !important;
+  max-height:100% !important;
+  overflow-y:auto !important;
+  margin-bottom:0 !important;
+}
+.cuerpo-pagina:not(.solo-mujeres) .foto-integrantes-btn {
+  display:block !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  align-self:end !important;
+  margin-top:12px !important;
+  min-height:38px !important;
+}
+/* Se evita que los botones queden debajo del pie en pantallas cortas. */
+.pagina-con-footer > .cuerpo-pagina {
+  box-sizing:border-box !important;
+  padding-bottom:18px !important;
+}
+@media(max-width:767px) {
+  .programa-definitivo:has(.logo-repertorio-v29) .logo-repertorio-v29 {width:78px !important;height:62px !important;}
+  .invitados-logos-pagina .logo-invitados-inferior-v30 {width:82px !important;height:64px !important;}
+  .gala-footer-bandera:not(.footer-solo-bandera-v28) {padding-right:65px !important;}
+  .gala-footer-bandera:not(.footer-solo-bandera-v28) .logo-footer-v26 {width:65px !important;height:42px !important;}
+  .cuerpo-pagina:not(.solo-mujeres) .foto-integrantes-btn {margin-top:9px !important;min-height:34px !important;}
+}
+
+
+/* V32 — reparar recorte de integrantes y simetría de botones.
+   V31 fijaba una fila minmax(0,1fr) y recortaba nombres al mostrar los botones.
+   Ahora las listas tienen altura natural y el desplazamiento ocurre en el contenido
+   de la página, no dentro de cada lista. */
+.cuerpo-pagina:not(.solo-mujeres) .integrantes-cuerpo {
+  flex:0 0 auto !important;
+  min-height:min-content !important;
+  overflow:visible !important;
+}
+.cuerpo-pagina:not(.solo-mujeres) .integrantes-dos-columnas {
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:0 !important;
+  align-items:stretch !important;
+  min-height:max-content !important;
+  overflow:visible !important;
+}
+.cuerpo-pagina:not(.solo-mujeres) .integrantes-columna {
+  display:flex !important;
+  flex-direction:column !important;
+  grid-template-rows:none !important;
+  min-height:0 !important;
+  padding:0 10px 0 0 !important;
+  border-right:1px solid #b89455 !important;
+  overflow:visible !important;
+}
+.cuerpo-pagina:not(.solo-mujeres) .integrantes-columna:last-child {
+  padding:0 0 0 10px !important;
+  border-right:0 !important;
+}
+.cuerpo-pagina:not(.solo-mujeres) .integrantes-columna .lista-integrantes {
+  flex:0 0 auto !important;
+  height:auto !important;
+  max-height:none !important;
+  min-height:max-content !important;
+  overflow:visible !important;
+  margin-bottom:0 !important;
+}
+.cuerpo-pagina:not(.solo-mujeres) .foto-integrantes-btn {
+  flex-shrink:0 !important;
+  margin-top:auto !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+/* Espacio igual en ambas columnas: los botones se alinean por la base,
+   con una separación mínima respecto de la lista más larga. */
+.cuerpo-pagina:not(.solo-mujeres) .integrantes-columna .lista-integrantes + .foto-integrantes-btn {
+  margin-top:max(14px, 2vh) !important;
+}
+/* No encerrar las listas en una caja de altura fija: el contenido puede desplazarse
+   completo si el dispositivo tiene poca altura. El pie permanece separado. */
+.pagina-con-footer > .cuerpo-pagina {
+  display:block !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  overscroll-behavior:contain;
+  padding-bottom:22px !important;
+}
+/* Páginas 4 y 7: logos visualmente más cerca de la franja inferior. */
+.programa-definitivo:has(.logo-repertorio-v29) .logo-repertorio-v29 {
+  bottom:-17px !important;
+  z-index:5 !important;
+}
+.invitados-logos-pagina .logo-invitados-inferior-v30 {
+  bottom:-17px !important;
+  z-index:5 !important;
+}
+@media (max-width:767px) {
+  .cuerpo-pagina:not(.solo-mujeres) .integrantes-columna {padding-right:8px !important;}
+  .cuerpo-pagina:not(.solo-mujeres) .integrantes-columna:last-child {padding-left:8px !important;}
+  .cuerpo-pagina:not(.solo-mujeres) .integrantes-columna .lista-integrantes + .foto-integrantes-btn {margin-top:12px !important;}
+  .programa-definitivo:has(.logo-repertorio-v29) .logo-repertorio-v29,
+  .invitados-logos-pagina .logo-invitados-inferior-v30 {bottom:-12px !important;}
+}

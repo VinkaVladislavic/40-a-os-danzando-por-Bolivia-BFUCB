@@ -4,7 +4,6 @@
       <p class="numero-pagina">06</p>
       <p class="etiqueta">QUIENES HACEN POSIBLE ESTA HISTORIA</p>
       <h2>Un ballet,<br />muchas generaciones</h2>
-      <img class="logo-equipo-v27" src="/images/LogoBallet.png" alt="Logo del Ballet Folclórico UCB" />
       <section class="personas-apoyo">
         <h3>Personas que hacen posible cada función</h3>
         <div class="creditos-lista">

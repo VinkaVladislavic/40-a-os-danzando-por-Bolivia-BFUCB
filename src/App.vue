@@ -22,7 +22,9 @@ const modalActive = ref(false)
 const currentPage = ref(0)
 // CAMBIO PROVISIONAL: pon false para recuperar Oficial y A en páginas separadas con fotos.
 const COMBINAR_OFICIAL_Y_A = true
-const totalPages = COMBINAR_OFICIAL_Y_A ? 14 : 15
+// V30 PROVISIONAL: cambia a true para recuperar la página 8 (equipo y producción).
+const MOSTRAR_PAGINA_EQUIPO = false
+const totalPages = (COMBINAR_OFICIAL_Y_A ? 14 : 15) - (MOSTRAR_PAGINA_EQUIPO ? 0 : 1)
 const themeMode = ref('dark')
 const showGuide = ref(false)
 function dismissGuide() { showGuide.value = false; try { localStorage.setItem('gala-navigation-guide-v1', 'seen') } catch {} }
@@ -123,23 +125,30 @@ watch(programaAbierto, async opened => {
     })
     // Pie con bandera inspirado en V22; la historia (página 1 de contenido) no lleva pie.
     physicalPages.forEach((page, index) => {
-      if (index === 1 || index === 0) return
+      if (index === 0) return
       const footer = document.createElement('div')
       footer.className = 'gala-footer-bandera'
       footer.innerHTML = '<span>GALA ANIVERSARIO - 40 AÑOS DANZANDO POR BOLIVIA</span><span class="sello-bandera" aria-hidden="true"></span>'
       page.appendChild(footer)
       page.classList.add('pagina-con-footer')
     })
-    // V27: logo junto a la bandera, excepto en páginas con logo propio en el contenido.
+    // V29: footer por número de página visible (índice cero).
+    // Solo bandera: páginas 2, 4, 5, 7 y 14. Bandera + logo: restantes.
     physicalPages.forEach((page, index) => {
-      if (index === 0 || index === 1 || index === 2 || index === 7 || index === physicalPages.length - 1) return
       const footer = page.querySelector('.gala-footer-bandera')
       if (!footer) return
-      const logo = document.createElement('img')
-      logo.src = '/images/LogoBallet.png'
-      logo.alt = 'Ballet Folclórico UCB'
-      logo.className = 'logo-footer-v26'
-      footer.appendChild(logo)
+      const pageNumber = index + 1
+      // Los índices posteriores a la página 8 se desplazan si se oculta provisionalmente.
+      const originalPageNumber = !MOSTRAR_PAGINA_EQUIPO && pageNumber >= 8 ? pageNumber + 1 : pageNumber
+      if ([2, 4, 5, 7, 14].includes(originalPageNumber)) {
+        footer.classList.add('footer-solo-bandera-v28')
+      } else {
+        const logo = document.createElement('img')
+        logo.src = '/images/LogoBallet.png'
+        logo.alt = 'Ballet Folclórico UCB'
+        logo.className = 'logo-footer-v26'
+        footer.appendChild(logo)
+      }
     })
     pageFlip.loadFromHTML(physicalPages)
     pageFlip.on('flip', updatePage)
@@ -202,7 +211,7 @@ onBeforeUnmount(() => {
           <IntermissionPage />
           <ProgramPage part="second" :segment="0" />
           <GuestGroupsPage />
-          <TeamPage />
+          <TeamPage v-if="MOSTRAR_PAGINA_EQUIPO" />
           <!-- PROVISIONAL: cambia COMBINAR_OFICIAL_Y_A a false (línea indicada arriba) para volver al diseño anterior. -->
           <CombinedOfficialAPage v-if="COMBINAR_OFICIAL_Y_A" :official="danceCorps[0]" :group-a="danceCorps[1]" />
           <template v-if="!COMBINAR_OFICIAL_Y_A">

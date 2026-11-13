@@ -23,6 +23,7 @@ function danceNumber(sectionIndex, index) {
       <p class="numero-pagina">{{ isFirst ? (segment === 0 ? '04' : '04') : (segment === 0 ? '06' : '07') }}</p>
       <p class="etiqueta">PROGRAMA</p>
       <h2>{{ isFirst ? 'Primera parte' : 'Segunda parte' }}</h2>
+      <img v-if="isFirst" class="logo-repertorio-v29" src="/images/LogoBallet.png" alt="Logo del Ballet Folclórico UCB" />
 
       <section v-for="(section, sectionIndex) in sections" :key="section.group" class="grupo-programa">
         <h3 class="grupo-titulo">Acompañamiento musical: {{ section.group }}</h3>

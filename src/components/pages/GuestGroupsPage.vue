@@ -1,11 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-const missing = ref({})
 const groups = [
-  { name: 'Agrupación «Cuñataí»', logo: '/images/LogoCunatai.png' },
-  { name: 'Orquesta Típica Nacional de Bolivia «Teófilo Vargas»', logo: '/images/LogoTeofiloVargas.png' },
-  { name: '«Canarios del Chaco»', logo: '/images/LogoCanariosDelChaco.png' },
-  { name: 'Centro Cultural «3 de Mayo»', logo: '/images/LogoCentroCultural3DeMayo.png' },
+  'Orquesta Típica Nacional de Bolivia «Teófilo Vargas»',
+  '«Canarios del Chaco»',
+  'Agrupación «Cuñataí»',
+  'Centro Cultural «3 de Mayo»',
 ]
 </script>
 <template>
@@ -15,16 +13,13 @@ const groups = [
       <p class="etiqueta">INVITADOS ESPECIALES</p>
       <h2>La música que<br />nos acompaña</h2>
       <p class="invitados-intro">Cuatro agrupaciones que dan voz, ritmo y emoción a esta gala.</p>
-      <div class="invitados-logos-grid">
-        <section v-for="group in groups" :key="group.name" class="invitado-logo-card">
-          <div class="invitado-logo-espacio">
-            <img v-if="!missing[group.name]" :src="group.logo" :alt="`Logotipo de ${group.name}`" @error="missing[group.name] = true" />
-            <span v-else class="invitado-logo-pendiente">LOGOTIPO<br />PENDIENTE</span>
-          </div>
-          <h3>{{ group.name }}</h3>
-        </section>
+      <div class="invitados-lista-v29">
+        <div v-for="(group, index) in groups" :key="group" class="invitado-fila-v29">
+          <span class="invitado-numero-v29">{{ String(index + 1).padStart(2, '0') }}</span>
+          <h3>{{ group }}</h3>
+        </div>
       </div>
-
+      <img class="logo-invitados-inferior-v30" src="/images/LogoBallet.png" alt="Logo del Ballet Folclórico UCB" />
     </div>
   </article>
 </template>
