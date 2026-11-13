@@ -688,3 +688,156 @@ html.dialog-open,html.dialog-open body{overflow:hidden!important;overscroll-beha
   .cuerpo-pagina .foto-grupal-cuerpo { height: 90px !important; }
   .cuerpo-pagina.solo-mujeres .foto-grupal-cuerpo { height: 100px !important; }
 }
+
+/* V18: portada del programa artístico; logo ampliado visualmente sin alterar el flujo */
+.marco-portada .logo-libro{transform:scale(1.38);transform-origin:center;position:relative;z-index:1}
+.marco-portada .eyebrow{line-height:1.5;letter-spacing:1.1px;font-size:clamp(8px,1.4vw,10px);white-space:normal}
+/* V18: historia más legible y con interlineado más compacto */
+.historia-40 > .texto-pagina{font-size:clamp(13px,1.8vw,16px);line-height:1.17;margin:3px 0}
+/* V18: intermedio en dos líneas */
+.marco-intermedio small{display:block;line-height:1.65;text-align:center}
+/* V18: más espacio para fotografía al quitar ornamento bajo el título */
+.cuerpo-pagina .foto-grupal-cuerpo{height:clamp(145px,28svh,215px)!important}
+/* V18: logo de agradecimientos */
+.agradecimiento-pagina .logo-agradecimientos{width:clamp(100px,31%,170px);max-height:170px}
+/* V18: Oficial y A juntos provisionalmente; sin fotografías */
+.cuerpos-combinados{padding:26px 22px 17px;gap:0;overflow:hidden}
+.cuerpos-combinados > .etiqueta{margin-bottom:7px}
+.cuerpo-resumen{padding:6px 0 10px;min-height:0;flex:1}
+.cuerpo-resumen + .cuerpo-resumen{border-top:1px solid #b89455;padding-top:12px}
+.cuerpo-resumen h2{font-family:'Cormorant Garamond',serif;font-size:clamp(21px,3.1vw,29px);line-height:1.05;margin:0 0 8px;color:#542a22;text-align:center}
+.resumen-columnas{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.resumen-columnas h3{color:#956f3f;letter-spacing:1.1px;font-size:10px;margin:0 0 5px}
+.resumen-columnas ul{list-style:none;margin:0;padding:0}
+.resumen-columnas li{font-size:clamp(10px,1.5vw,13px);line-height:1.35;margin-bottom:3px;color:#59483b}
+.theme-dark .cuerpo-resumen h2{color:#f1d7aa}
+.theme-dark .resumen-columnas li{color:#e9d9c5}
+.theme-dark .resumen-columnas h3{color:#d5ad70}
+@media(max-width:767px){
+ .historia-40 > .texto-pagina{font-size:clamp(11px,3vw,13px);line-height:1.15;margin:2px 0}
+ .cuerpos-combinados{padding:22px 16px 13px}
+ .cuerpo-resumen{padding:4px 0 6px}
+ .cuerpo-resumen + .cuerpo-resumen{padding-top:8px}
+ .cuerpo-resumen h2{font-size:clamp(19px,5.4vw,25px);margin-bottom:5px}
+ .resumen-columnas{gap:9px}
+ .resumen-columnas h3{font-size:9px;margin-bottom:3px}
+ .resumen-columnas li{font-size:clamp(9px,2.65vw,11px);line-height:1.23;margin-bottom:2px}
+ .agradecimiento-pagina .logo-agradecimientos{width:clamp(90px,29%,140px)}
+}
+@media(max-height:700px){
+ .cuerpos-combinados{padding-top:17px;padding-bottom:9px}
+ .cuerpo-resumen h2{margin-bottom:4px}
+ .resumen-columnas li{line-height:1.15;margin-bottom:1px}
+ .historia-40 > .texto-pagina{font-size:11px;line-height:1.13}
+}
+
+/* V19 — cambios temporales solicitados. */
+/* Escala visual del logo, sin modificar su caja ni desplazar el resto de la portada interior. */
+.marco-portada .logo-libro { transform: scale(1.75); transform-origin: center; position: relative; z-index: 1; }
+/* Logo protagonista en agradecimientos, con límite para no desbordar la página. */
+.agradecimiento-pagina .logo-agradecimientos { width: clamp(140px, 39%, 215px); max-height: 205px; object-fit: contain; }
+/* V20: recuperamos los tamaños V18 de fotografías y nombres (especialmente B).
+   Las reglas V17 anteriores vuelven a controlar las proporciones. */
+@media (max-width: 767px) {
+  .agradecimiento-pagina .logo-agradecimientos { width: clamp(115px, 36%, 175px); max-height: 175px; }
+}
+
+/* V20: sello anclado en idéntica posición en las cuatro páginas del repertorio.
+   No depende del número de danzas o de la longitud de los títulos. */
+.programa-definitivo {
+  position: relative;
+  padding-bottom: 88px !important;
+}
+.programa-definitivo .programa-sello {
+  position: absolute;
+  bottom: 17px;
+  left: 23px;
+  right: 23px;
+  width: auto;
+  margin: 0 !important;
+  gap: 5px;
+  flex: none;
+  z-index: 1;
+}
+@media (max-width: 767px) {
+  .programa-definitivo { padding-bottom: 78px !important; }
+  .programa-definitivo .programa-sello { bottom: 13px; left: 20px; right: 20px; }
+}
+@media (max-height: 650px) {
+  .programa-definitivo { padding-bottom: 67px !important; }
+  .programa-definitivo .programa-sello { bottom: 9px; gap: 3px; }
+  .programa-definitivo .programa-sello .sello-ornamento { font-size: 14px; }
+}
+
+/* V21 — D y Aspirantes replican exactamente la foto y tipografía de B/C.
+   No se modifican las reglas de B ni C. */
+.cuerpo-pagina.solo-mujeres .foto-grupal-cuerpo {
+  height: clamp(145px, 28svh, 215px) !important;
+  margin: 4px 0 7px !important;
+}
+.cuerpo-pagina.solo-mujeres .integrantes-columna .lista-integrantes {
+  font-size: clamp(10px, 1.38vw, 12px);
+  line-height: 1.38;
+  padding-left: 17px;
+  overflow-wrap: break-word;
+}
+/* Última página: márgenes seguros para el logo y los enlaces. */
+.agradecimiento-pagina.agradecimiento-v16 {
+  box-sizing: border-box;
+  padding: 28px 30px 34px;
+}
+.agradecimiento-v16 .logo-agradecimientos {
+  max-width: calc(100% - 16px);
+}
+.agradecimiento-v16 .redes-sociales {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px 5px;
+  gap: 12px;
+}
+@media (max-width: 767px) {
+  .cuerpo-pagina.solo-mujeres .integrantes-columna .lista-integrantes {
+    font-size: clamp(9px, 2.65vw, 10.5px);
+    line-height: 1.32;
+    padding-left: 14px;
+  }
+  .agradecimiento-pagina.agradecimiento-v16 {
+    padding: 23px 23px 30px;
+  }
+  .agradecimiento-v16 .redes-sociales {
+    padding-inline: 8px;
+  }
+}
+@media (max-height: 650px) and (max-width: 767px) {
+  .cuerpo-pagina.solo-mujeres .integrantes-columna .lista-integrantes {
+    font-size: 8.5px;
+    line-height: 1.22;
+  }
+  .agradecimiento-pagina.agradecimiento-v16 {
+    padding-top: 18px;
+    padding-bottom: 24px;
+  }
+}
+
+/* V22: agradecimientos sin estrella; logo visible y contenido más abajo. */
+.agradecimiento-pagina.agradecimiento-v16 {
+  justify-content: flex-start;
+  padding-top: clamp(40px, 7%, 62px);
+  padding-bottom: 24px;
+  gap: 1px;
+}
+.agradecimiento-v16 .logo-agradecimientos {
+  width: clamp(115px, 35%, 180px);
+  max-height: clamp(105px, 21svh, 155px);
+  flex-shrink: 1;
+  margin-bottom: 5px;
+}
+.agradecimiento-v16 h2 { margin: 6px 0 8px; }
+@media (max-width: 767px) {
+  .agradecimiento-pagina.agradecimiento-v16 { padding-top: 36px; padding-bottom: 18px; }
+  .agradecimiento-v16 .logo-agradecimientos { width: clamp(105px, 34%, 150px); max-height: 125px; }
+}
+@media (max-height: 650px) and (max-width: 767px) {
+  .agradecimiento-pagina.agradecimiento-v16 { padding-top: 22px; padding-bottom: 12px; }
+  .agradecimiento-v16 .logo-agradecimientos { max-height: 100px; }
+}

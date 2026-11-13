@@ -10,6 +10,7 @@ import TeamPage from './components/pages/TeamPage.vue'
 import ThanksPage from './components/pages/ThanksPage.vue'
 import GuestGroupsPage from './components/pages/GuestGroupsPage.vue'
 import TeamCorpsPage from './components/pages/TeamCorpsPage.vue'
+import CombinedOfficialAPage from './components/pages/CombinedOfficialAPage.vue'
 import { danceCorps } from './data/team'
 import DanceModal from './components/common/DanceModal.vue'
 
@@ -19,11 +20,14 @@ const danceSelected = ref(null)
 const modalOriginPage = ref(null)
 const modalActive = ref(false)
 const currentPage = ref(0)
-const totalPages = 17
+// CAMBIO PROVISIONAL: pon false para recuperar Oficial y A en páginas separadas con fotos.
+const COMBINAR_OFICIAL_Y_A = true
+const totalPages = COMBINAR_OFICIAL_Y_A ? 16 : 17
 const themeMode = ref('dark')
 const showGuide = ref(false)
 function dismissGuide() { showGuide.value = false; try { localStorage.setItem('gala-navigation-guide-v1', 'seen') } catch {} }
-function toggleTheme() { themeMode.value = themeMode.value === 'dark' ? 'light' : 'dark' }
+// MODO OSCURO PROVISIONAL: para recuperar el selector, restaura el botón en el template.
+// function toggleTheme() { themeMode.value = themeMode.value === 'dark' ? 'light' : 'dark' }
 let pageFlip = null
 let navigationLocked = false
 let navigationUnlockTimer = null
@@ -160,7 +164,7 @@ onBeforeUnmount(() => {
       <div class="barra-libro">
         <button class="boton-cerrar" @click="programaAbierto = false">← <span>Portada</span></button>
         <div class="progreso-wrap"><span>{{ String(currentPage + 1).padStart(2, '0') }} / {{ totalPages }}</span><div class="progreso"><i :style="{ width: progress + '%' }"></i></div></div>
-        <div class="controles-libro"><button class="nav-top" type="button" @click="goPrev" :disabled="currentPage === 0 || modalActive" aria-label="Página anterior">‹</button><button class="nav-top" type="button" @click="goNext" :disabled="currentPage >= totalPages - 1 || modalActive" aria-label="Página siguiente">›</button><button class="theme-toggle" @click="toggleTheme" :aria-label="themeMode === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'">{{ themeMode === 'dark' ? '☼' : '☾' }}</button></div>
+        <div class="controles-libro"><button class="nav-top" type="button" @click="goPrev" :disabled="currentPage === 0 || modalActive" aria-label="Página anterior">‹</button><button class="nav-top" type="button" @click="goNext" :disabled="currentPage >= totalPages - 1 || modalActive" aria-label="Página siguiente">›</button></div>
       </div>
       <div class="libro-contenedor">
 
@@ -175,7 +179,14 @@ onBeforeUnmount(() => {
           <ProgramPage part="second" :segment="1" />
           <GuestGroupsPage />
           <TeamPage />
-          <TeamCorpsPage v-for="(corps, index) in danceCorps" :key="corps.name" :corps="corps" :page-number="11 + index" :theme="themeMode" />
+          <!-- PROVISIONAL: cambia COMBINAR_OFICIAL_Y_A a false (línea indicada arriba) para volver al diseño anterior. -->
+          <CombinedOfficialAPage v-if="COMBINAR_OFICIAL_Y_A" :official="danceCorps[0]" :group-a="danceCorps[1]" />
+          <template v-if="!COMBINAR_OFICIAL_Y_A">
+            <TeamCorpsPage v-for="(corps, index) in danceCorps" :key="corps.name" :corps="corps" :page-number="11 + index" :theme="themeMode" />
+          </template>
+          <template v-else>
+            <TeamCorpsPage v-for="(corps, index) in danceCorps.slice(2)" :key="corps.name" :corps="corps" :page-number="11 + index" :theme="themeMode" />
+          </template>
           <ThanksPage />
         </div>
 

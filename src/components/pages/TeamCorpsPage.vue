@@ -30,7 +30,6 @@ function openPhoto(kind) {
       <p class="numero-pagina">{{ String(pageNumber).padStart(2, '0') }}</p>
       <p class="etiqueta">NUESTROS CUERPOS DE BAILE</p>
       <h2>{{ fullName }}</h2>
-      <div class="separador">✦</div>
       <figure class="foto-cuerpo foto-mixta foto-grupal-cuerpo">
         <img v-if="!brokenPhotos.grupal" :src="photo" :alt="`${fullName}, fotografía grupal`" @error="brokenPhotos.grupal = true" />
         <figcaption v-else>Fotografía grupal · {{ fullName }}</figcaption>
@@ -41,12 +40,12 @@ function openPhoto(kind) {
           <section class="integrantes-columna">
             <h4>MUJERES</h4>
             <ol class="lista-integrantes"><li v-for="(member, index) in corps.members.women" :key="`m-${index}`">{{ member }}</li></ol>
-            <button v-if="corps.members.men.length" type="button" class="foto-integrantes-btn" @pointerdown.stop @touchstart.stop @click.stop="openPhoto('girls')">Ver foto de las bailarinas <span>↗</span></button>
+            <button v-if="corps.members.men.length" type="button" class="foto-integrantes-btn" @pointerdown.stop @touchstart.stop @click.stop="openPhoto('girls')">Ver foto de las bailarinas</button>
           </section>
           <section v-if="corps.members.men.length" class="integrantes-columna">
             <h4>VARONES</h4>
             <ol class="lista-integrantes"><li v-for="(member, index) in corps.members.men" :key="`h-${index}`">{{ member }}</li></ol>
-            <button type="button" class="foto-integrantes-btn" @pointerdown.stop @touchstart.stop @click.stop="openPhoto('boys')">Ver foto de los bailarines <span>↗</span></button>
+            <button type="button" class="foto-integrantes-btn" @pointerdown.stop @touchstart.stop @click.stop="openPhoto('boys')">Ver foto de los bailarines</button>
           </section>
         </div>
       </div>
