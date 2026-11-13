@@ -152,9 +152,7 @@ onBeforeUnmount(() => {
         <p class="fecha">SÁBADO 14 Y DOMINGO 15<br />DE NOVIEMBRE DE 2026</p>
         <p class="lugar">Teatro Municipal <strong>“Alberto Saavedra Pérez”</strong></p>
         <p class="hora">19:00</p>
-        <button class="theme-toggle portada-theme-toggle" @click="toggleTheme" :aria-label="themeMode === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'">{{ themeMode === 'dark' ? '☼ Modo claro' : '☾ Modo oscuro' }}</button>
         <button class="boton-abrir" @click="programaAbierto = true"><span>Descubrir el programa</span><span class="flecha">→</span></button>
-        <p class="indicacion">Una celebración de nuestras raíces</p>
       </div>
     </section>
 

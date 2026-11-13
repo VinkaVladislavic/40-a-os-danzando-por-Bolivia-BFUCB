@@ -1,27 +1,31 @@
 <script setup>
+import { ref } from 'vue'
+const missing = ref({})
 const groups = [
-  { name: 'Agrupación Cuñataí', note: 'Acompañamiento musical en ambas partes del programa.' },
-  { name: 'Orquesta Típica Nacional de Bolivia · Teófilo Vargas', note: 'Tradición e interpretación de piezas del repertorio nacional.' },
-  { name: 'Canarios del Chaco', note: 'Música y expresiones tradicionales de la región chaqueña.' },
-  { name: 'Centro Cultural 3 de Mayo', note: 'Acompañamiento musical de la tarqueada.' },
+  { name: 'Agrupación Cuñataí', logo: '/images/LogoCunatai.png' },
+  { name: 'Orquesta Típica Nacional de Bolivia Teófilo Vargas', logo: '/images/LogoTeofiloVargas.png' },
+  { name: 'Canarios del Chaco', logo: '/images/LogoCanariosDelChaco.png' },
+  { name: 'Centro Cultural 3 de Mayo', logo: '/images/LogoCentroCultural3DeMayo.png' },
 ]
 </script>
 <template>
   <article class="pagina">
-    <div class="contenido-pagina grupos-invitados-pagina">
-      <p class="numero-pagina">07</p>
+    <div class="contenido-pagina grupos-invitados-pagina invitados-logos-pagina">
+      <p class="numero-pagina">08</p>
       <p class="etiqueta">INVITADOS ESPECIALES</p>
       <h2>La música que<br />nos acompaña</h2>
       <div class="separador">✦</div>
-      <p class="texto-pagina texto-izquierda">Las agrupaciones invitadas acompañan esta gala y se unen en un gran ensamble musical para el cierre.</p>
-      <div class="grupos-invitados-lista">
-        <section v-for="(group, index) in groups" :key="group.name" class="grupo-invitado">
-          <span class="grupo-invitado-numero">0{{ index + 1 }}</span>
-          <div><h3>{{ group.name }}</h3><p>{{ group.note }}</p></div>
+      <p class="invitados-intro">Cuatro agrupaciones que dan voz, ritmo y emoción a esta gala.</p>
+      <div class="invitados-logos-grid">
+        <section v-for="group in groups" :key="group.name" class="invitado-logo-card">
+          <div class="invitado-logo-espacio">
+            <img v-if="!missing[group.name]" :src="group.logo" :alt="`Logotipo de ${group.name}`" @error="missing[group.name] = true" />
+            <span v-else class="invitado-logo-pendiente">LOGOTIPO<br />PENDIENTE</span>
+          </div>
+          <h3>{{ group.name }}</h3>
         </section>
       </div>
-      <div class="grupo-foto-placeholder">Espacio para fotografías de las agrupaciones invitadas</div>
-      <p class="pie-pagina">Nuestro agradecimiento por ser parte de esta gala</p>
+      <p class="pie-pagina">Gracias por compartir su música y su talento</p>
     </div>
   </article>
 </template>

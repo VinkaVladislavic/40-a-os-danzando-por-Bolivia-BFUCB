@@ -32,7 +32,7 @@ function danceNumber(sectionIndex, index) {
           <span class="danza-info"><span class="danza-nombre danza-texto">{{ dance.name }}</span></span>
         </div>
       </section>
-      <p class="pie-pagina">{{ isFirst ? 'Primera parte' : 'Segunda parte' }} · Repertorio definitivo</p>
+      <div class="programa-sello" aria-hidden="true"><span class="sello-ornamento">✦</span><span>40 AÑOS DANZANDO POR BOLIVIA</span><span class="sello-bandera"></span></div>
     </div>
   </article>
 </template>

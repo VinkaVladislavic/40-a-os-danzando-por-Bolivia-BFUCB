@@ -512,3 +512,179 @@ html.dialog-open,html.dialog-open body{overflow:hidden!important;overscroll-beha
  .espectaculo-pagina .foto-identidad{height:75px;margin:1px 0 6px}
  .espectaculo-pagina .texto-pagina{font-size:12px;line-height:1.23;margin:4px 0}
 }
+
+/* V15: logotipo de la portada interior notablemente mayor. */
+.marco-portada .logo-libro{width:clamp(170px,53%,245px);max-width:100%;max-height:clamp(160px,38%,235px);height:auto;flex:0 1 auto;margin:0 auto 2px;object-fit:contain}
+.marco-portada{gap:2px}
+.marco-portada .titulo-libro{max-height:clamp(75px,23%,145px);margin:4px auto 0}
+.marco-portada .ornamento-linea{margin:3px auto}
+/* Grupos musicales: títulos y descripciones legibles. */
+.grupos-invitados-pagina .grupo-invitado h3{font-size:clamp(18px,2.4vw,22px);line-height:1.12}
+.grupos-invitados-pagina .grupo-invitado p{font-size:clamp(11px,1.55vw,13px);line-height:1.35}
+.grupos-invitados-pagina .grupo-invitado{padding:8px 0;gap:9px}
+.grupos-invitados-pagina .grupos-invitados-lista{gap:5px;margin:8px 0}
+.grupos-invitados-pagina>.texto-pagina{font-size:clamp(13px,1.7vw,16px);line-height:1.32}
+/* Créditos: sin fotografía general ni bloque redundante del elenco. */
+.equipo-pagina .personas-apoyo>h3{font-size:clamp(12px,1.7vw,15px);line-height:1.35}
+.equipo-pagina .personas-apoyo .creditos-lista p{font-size:clamp(12px,1.65vw,15px);line-height:1.35;padding:11px 0;gap:5px}
+.equipo-pagina .personas-apoyo .creditos-lista strong{font-size:clamp(10px,1.3vw,12px)}
+.equipo-pagina .personas-apoyo{margin-top:14px}
+/* D y Aspirantes: únicamente mujeres, sin espacio reservado para varones. */
+.cuerpo-pagina.solo-mujeres .integrantes-dos-columnas{display:block;flex:1}
+.cuerpo-pagina.solo-mujeres .integrantes-columna{border:0;padding:0;min-height:100%}
+.cuerpo-pagina.solo-mujeres .integrantes-columna h4{font-size:13px;margin:12px 0}
+.cuerpo-pagina.solo-mujeres .lista-integrantes{font-size:clamp(12px,1.8vw,16px);line-height:1.7;overflow:visible;max-height:none}
+.cuerpo-pagina.solo-mujeres .foto-integrantes-btn{margin-top:18px;font-size:11px;padding:10px}
+@media(max-width:600px){
+ .marco-portada .logo-libro{width:clamp(150px,53%,205px);max-height:clamp(140px,34%,190px);margin-bottom:2px}
+ .marco-portada .titulo-libro{max-height:clamp(75px,22%,125px)}
+ .grupos-invitados-pagina .grupo-invitado h3{font-size:clamp(16px,4.3vw,19px)}
+ .grupos-invitados-pagina .grupo-invitado p{font-size:clamp(10px,2.8vw,12px)}
+ .grupos-invitados-pagina .grupo-invitado{padding:7px 0}
+ .equipo-pagina .personas-apoyo .creditos-lista p{font-size:clamp(11px,3vw,13px);padding:9px 0}
+ .equipo-pagina .personas-apoyo .creditos-lista strong{font-size:clamp(9px,2.5vw,11px)}
+ .cuerpo-pagina.solo-mujeres .lista-integrantes{font-size:clamp(12px,3.3vw,15px);line-height:1.7}
+}
+
+/* V16 — ajustes editoriales y fotográficos */
+/* Portada exterior: logo crece visualmente sin ocupar más espacio en el flujo. */
+.portada .contenido-portada .logo{width:clamp(125px,33vw,200px);max-height:145px;height:auto;object-fit:contain;transform:scale(1.27);transform-origin:center center;margin-bottom:12px;position:relative;z-index:1}
+/* Portada interior: el título artístico es más grande que el logo. */
+.marco-portada .logo-libro{width:clamp(76px,22%,108px);max-height:clamp(70px,18%,104px);height:auto;flex:0 1 auto;margin:0 auto 7px}
+.marco-portada .titulo-libro{width:min(100%,310px);max-height:clamp(125px,33%,195px);margin:10px auto 3px}
+/* Historia y biografía */
+.historia-40 h2{margin:11px 0 7px}
+.historia-40 .texto-pagina,.espectaculo-pagina .texto-pagina{text-align:justify;hyphens:auto;text-wrap:wrap}
+.historia-40 .maestra-bloque{display:block;margin-top:9px;padding-top:9px}
+.historia-40 .bio-maestra{display:flow-root;text-align:justify}
+.historia-40 .bio-maestra .foto-maestra{float:left;width:clamp(82px,25%,116px);height:clamp(112px,29%,148px);object-fit:cover;margin:2px 12px 6px 0;border:1px solid #b89455;background:#dfd1bc}
+.historia-40 .bio-maestra .etiqueta{text-align:left}
+.historia-40 .bio-maestra p:not(.etiqueta){text-align:justify;hyphens:auto;line-height:1.31}
+/* Repertorio: sello artístico discreto para completar la composición. */
+.programa-definitivo .programa-sello{margin:auto auto 5px;width:100%;display:flex;flex-direction:column;align-items:center;gap:7px;color:#98764a;text-align:center;font-size:9px;font-weight:600;letter-spacing:1.5px}
+.programa-sello .sello-ornamento{font-size:20px;color:#b89455}
+.programa-sello .sello-bandera{width:76%;height:5px;background:linear-gradient(to right,#bc493b 0 33.33%,#e4c36a 33.33% 66.66%,#56875d 66.66% 100%);opacity:.62;border-radius:2px}
+.theme-dark .programa-definitivo .programa-sello{color:#e1c68f}
+/* Intermedio: contraste fuerte en modo oscuro y logo protagonista. */
+.marco-intermedio .logo-intermedio{width:clamp(140px,43%,235px);max-height:clamp(135px,34%,220px);height:auto;margin:0 auto 12px}
+.theme-dark .marco-intermedio h2{color:#f2d596!important;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.theme-dark .marco-intermedio .etiqueta{color:#e6c990}
+/* Invitados: galería de logotipos sin descripciones. */
+.invitados-logos-pagina{overflow:hidden;display:flex;flex-direction:column}
+.invitados-logos-pagina .invitados-intro{font:italic clamp(13px,1.8vw,16px) 'Cormorant Garamond',serif;text-align:center;margin:4px 0 12px;color:#76563b}
+.invitados-logos-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:10px;flex:1;min-height:0;margin:5px 0 8px}
+.invitado-logo-card{min-height:0;border:1px solid rgba(184,148,85,.45);border-radius:8px;padding:10px 7px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;text-align:center;background:rgba(184,148,85,.06)}
+.invitado-logo-espacio{width:100%;height:clamp(60px,13svh,120px);display:flex;align-items:center;justify-content:center}
+.invitado-logo-espacio img{max-width:100%;max-height:100%;object-fit:contain}
+.invitado-logo-pendiente{font-size:9px;line-height:1.4;letter-spacing:1.3px;color:#a58c70}
+.invitado-logo-card h3{font:600 clamp(13px,1.8vw,17px) 'Cormorant Garamond',serif;color:#542a22;margin:0;line-height:1.16}
+.theme-dark .invitados-logos-pagina .invitados-intro,.theme-dark .invitado-logo-card h3{color:#e8ca8d}
+.theme-dark .invitado-logo-card{background:rgba(184,148,85,.09)}
+/* Créditos: transición hacia los cuerpos de baile. */
+.equipo-pagina .presentacion-elencos{margin:auto 0 8px;border-top:1px solid #b89455;padding:15px 7px 0;text-align:center;color:#76563b}
+.presentacion-elencos>span{display:block;color:#b89455;font-size:20px;margin-bottom:8px}
+.presentacion-elencos p{font:italic clamp(15px,2.1vw,19px)/1.35 'Cormorant Garamond',serif;margin:0}
+.theme-dark .presentacion-elencos{color:#e8ca8d}
+/* Elencos: nombre completo, mujeres a la izquierda y varones a la derecha. */
+.cuerpo-pagina h2{font-size:clamp(25px,3.4vw,34px);line-height:1.07}
+.cuerpo-pagina .integrantes-columna h4{font-size:clamp(9px,1.4vw,12px)}
+.cuerpo-pagina .foto-integrantes-btn{font-size:clamp(8px,1.1vw,10px);min-height:37px}
+.cuerpo-pagina.solo-mujeres .foto-grupal-cuerpo{height:clamp(150px,27svh,205px)!important}
+.cuerpo-pagina.solo-mujeres .integrantes-dos-columnas{display:block}
+.cuerpo-pagina.solo-mujeres .integrantes-columna{min-height:0}
+/* Agradecimientos y dos logotipos de patrocinadores. */
+.agradecimiento-v16{padding:clamp(20px,4%,35px);gap:2px}
+.agradecimiento-v16 h2{font-size:clamp(30px,4.5vw,43px);line-height:1.08;margin:8px 0}
+.agradecimiento-v16 .texto-pagina{font-size:clamp(12px,1.6vw,15px);line-height:1.3;margin:6px 0}
+.agradecimiento-v16 .auspicios-dobles{width:100%;max-width:none;margin:12px 0 6px;padding:10px 4px}
+.auspiciadores-logos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
+.auspiciador-logo{height:clamp(65px,12svh,110px);border:1px dashed rgba(184,148,85,.65);border-radius:6px;display:flex;align-items:center;justify-content:center;padding:7px;min-width:0}
+.auspiciador-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.auspiciador-logo span{font-size:clamp(10px,1.6vw,14px);font-weight:700;letter-spacing:.5px;color:#9c7947;text-align:center}
+.agradecimiento-v16>h3{font-size:clamp(23px,3.1vw,30px);margin:7px 0 3px}
+.agradecimiento-v16 .redes-sociales{margin-top:7px}
+@media(max-width:600px){
+ .portada .contenido-portada .logo{width:clamp(120px,35vw,160px);transform:scale(1.25)}
+ .marco-portada .logo-libro{width:clamp(70px,22%,95px);max-height:95px}
+ .marco-portada .titulo-libro{max-height:clamp(120px,31%,165px)}
+ .historia-40 h2{margin:8px 0 5px}
+ .historia-40 .bio-maestra .foto-maestra{width:75px;height:100px;margin-right:9px}
+ .historia-40 .bio-maestra p:not(.etiqueta){font-size:9.2px;line-height:1.25}
+ .invitados-logos-grid{gap:7px}
+ .invitado-logo-card{padding:7px 5px;gap:5px}
+ .invitado-logo-espacio{height:clamp(54px,11svh,95px)}
+ .invitado-logo-card h3{font-size:clamp(12px,3.5vw,15px)}
+ .invitados-logos-pagina .invitados-intro{font-size:13px;margin:3px 0 6px}
+ .marco-intermedio .logo-intermedio{width:clamp(130px,43%,190px);max-height:180px}
+ .programa-definitivo .programa-sello{font-size:8px;gap:5px}
+ .cuerpo-pagina h2{font-size:clamp(23px,6vw,29px)}
+ .cuerpo-pagina .foto-integrantes-btn{font-size:8px;line-height:1.2}
+ .agradecimiento-v16{padding:20px 17px}
+ .agradecimiento-v16 h2{font-size:clamp(28px,7.2vw,36px)}
+ .agradecimiento-v16 .texto-pagina{font-size:12px}
+ .auspiciador-logo{height:clamp(60px,11svh,90px)}
+}
+/* La ampliación del logo exterior es puramente visual: mantiene la caja original. */
+.portada .contenido-portada .logo{width:clamp(90px,24vw,145px);max-height:none;transform:scale(1.65);transform-origin:center center}
+@media(min-width:768px){.portada .contenido-portada .logo{width:140px}}
+@media(max-height:700px){.portada .contenido-portada .logo{width:clamp(75px,18vw,115px)}}
+
+/* V17 — legibilidad diferenciada de elencos y fotografías sin recorte */
+/* Oficial, A, B y C: listas más grandes, sin cambiar el contenido. */
+.cuerpo-pagina:not(.solo-mujeres) .integrantes-columna .lista-integrantes {
+  font-size: clamp(10px, 1.38vw, 12px);
+  line-height: 1.38;
+  padding-left: 17px;
+  overflow-wrap: break-word;
+}
+/* D y Aspirantes: nombres compactos para que entren en la página. */
+.cuerpo-pagina.solo-mujeres .integrantes-columna .lista-integrantes {
+  font-size: clamp(10px, 1.35vw, 12px);
+  line-height: 1.38;
+  margin-top: 5px;
+}
+.cuerpo-pagina.solo-mujeres .integrantes-columna h4 { margin: 5px 0 6px; }
+/* Se muestra la fotografía completa; ya no se cortan los extremos del grupo. */
+.cuerpo-pagina .foto-grupal-cuerpo {
+  background: #e5d9c7;
+  border: 1px solid rgba(184,148,85,.35);
+  height: clamp(112px, 19svh, 155px) !important;
+  margin: 4px 0 7px !important;
+}
+.cuerpo-pagina .foto-grupal-cuerpo img {
+  width: 100%; height: 100%; object-fit: contain; object-position: center;
+}
+.cuerpo-pagina.solo-mujeres .foto-grupal-cuerpo {
+  height: clamp(120px, 23svh, 175px) !important;
+}
+.theme-dark .cuerpo-pagina .foto-grupal-cuerpo { background: #332720; }
+@media (max-width: 767px) {
+  .cuerpo-pagina:not(.solo-mujeres) .integrantes-columna .lista-integrantes {
+    font-size: clamp(9px, 2.65vw, 10.5px);
+    line-height: 1.32;
+    padding-left: 14px;
+  }
+  .cuerpo-pagina.solo-mujeres .integrantes-columna .lista-integrantes {
+    font-size: clamp(9px, 2.6vw, 10.5px);
+    line-height: 1.33;
+    padding-left: 18px;
+  }
+  .cuerpo-pagina .foto-grupal-cuerpo {
+    height: clamp(100px, 17svh, 135px) !important;
+  }
+  .cuerpo-pagina.solo-mujeres .foto-grupal-cuerpo {
+    height: clamp(112px, 21svh, 150px) !important;
+  }
+}
+@media (max-height: 650px) and (max-width: 767px) {
+  .cuerpo-pagina:not(.solo-mujeres) .integrantes-columna .lista-integrantes {
+    font-size: 8.5px;
+    line-height: 1.22;
+  }
+  .cuerpo-pagina.solo-mujeres .integrantes-columna .lista-integrantes {
+    font-size: 9px;
+    line-height: 1.25;
+  }
+  .cuerpo-pagina .foto-grupal-cuerpo { height: 90px !important; }
+  .cuerpo-pagina.solo-mujeres .foto-grupal-cuerpo { height: 100px !important; }
+}

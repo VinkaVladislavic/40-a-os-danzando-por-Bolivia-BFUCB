@@ -10,8 +10,8 @@
       <p class="texto-pagina texto-izquierda">Con presentaciones dentro y fuera del país, más de 40 participaciones internacionales y el festival <em>La Danza Integradora de Culturas</em>, el Ballet continúa compartiendo la riqueza de nuestras tradiciones con el mundo.</p>
       <p class="texto-pagina texto-izquierda historia-cierre">Hoy celebramos a quienes hicieron posible este camino y a quienes siguen escribiendo su historia, dentro y fuera del escenario.</p>
       <section class="maestra-bloque">
-        <div class="retrato-placeholder" aria-label="Espacio reservado para fotografía de Norah Valverde Tapia"><span>NV</span><small>Fotografía<br />pendiente</small></div>
         <div class="bio-maestra">
+          <img class="foto-maestra" src="/images/NorahValverde.jpg" alt="Norah B. Valverde Tapia" onerror="this.style.display='none'" />
           <p class="etiqueta">DIRECTORA GENERAL Y FUNDADORA</p>
           <h3>Norah B. Valverde Tapia</h3>
           <p>Fundadora y directora general desde 1986, Norah B. Valverde Tapia concibió el Ballet como un espacio de formación artística y valoración de nuestras raíces. En su tesis «El ballet folclórico, un medio para la comunicación. Propuesta de sistematización conceptual», reflexionó sobre la danza como expresión simbólica con sentido. A lo largo de cuatro décadas ha impulsado coreografías, obras de carácter histórico-social y generaciones de bailarines comprometidos con el folclore boliviano.</p>
