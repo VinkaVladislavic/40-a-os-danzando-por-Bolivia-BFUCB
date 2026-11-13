@@ -17,7 +17,7 @@
           <p>Fundadora y directora general desde 1986, Norah B. Valverde Tapia concibió el Ballet como un espacio de formación artística y valoración de nuestras raíces. En su tesis «El ballet folclórico, un medio para la comunicación. Propuesta de sistematización conceptual», reflexionó sobre la danza como expresión simbólica con sentido. A lo largo de cuatro décadas ha impulsado coreografías, obras de carácter histórico-social y generaciones de bailarines comprometidos con el folclore boliviano.</p>
         </div>
       </section>
-      <p class="pie-pagina">Cuatro décadas de identidad, arte y tradición</p>
+
     </div>
   </article>
 </template>

@@ -26,8 +26,8 @@ const sponsors = [
       <h3>40 años danzando por Bolivia</h3>
       <p class="texto-portada-secundario">BALLET FOLCLÓRICO UCB</p>
       <nav class="redes-sociales" aria-label="Redes sociales del Ballet">
-        <a v-if="socialLinks.facebook" :href="socialLinks.facebook" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
-        <a v-if="socialLinks.instagram" :href="socialLinks.instagram" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+        <a v-if="socialLinks.facebook" :href="socialLinks.facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a v-if="socialLinks.instagram" :href="socialLinks.instagram" target="_blank" rel="noopener noreferrer">Instagram</a>
         <span v-if="!socialLinks.facebook && !socialLinks.instagram" class="redes-pendientes">Enlaces oficiales de redes sociales pendientes de incorporar</span>
       </nav>
     </div>

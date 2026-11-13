@@ -22,7 +22,7 @@ const modalActive = ref(false)
 const currentPage = ref(0)
 // CAMBIO PROVISIONAL: pon false para recuperar Oficial y A en páginas separadas con fotos.
 const COMBINAR_OFICIAL_Y_A = true
-const totalPages = COMBINAR_OFICIAL_Y_A ? 16 : 17
+const totalPages = COMBINAR_OFICIAL_Y_A ? 14 : 15
 const themeMode = ref('dark')
 const showGuide = ref(false)
 function dismissGuide() { showGuide.value = false; try { localStorage.setItem('gala-navigation-guide-v1', 'seen') } catch {} }
@@ -115,7 +115,33 @@ watch(programaAbierto, async opened => {
       flippingTime: 920, maxShadowOpacity: 0.32, autoSize: true,
       drawShadow: true, clickEventForward: false, disableFlipByClick: true, useMouseEvents: false, swipeDistance: 9999,
     })
-    pageFlip.loadFromHTML(libro.value.querySelectorAll('.pagina'))
+    // La numeración impresa coincide con la barra: portada = 01.
+    const physicalPages = [...libro.value.querySelectorAll('.pagina')]
+    physicalPages.forEach((page, index) => {
+      const label = page.querySelector('.numero-pagina')
+      if (label) label.textContent = String(index + 1).padStart(2, '0')
+    })
+    // Pie con bandera inspirado en V22; la historia (página 1 de contenido) no lleva pie.
+    physicalPages.forEach((page, index) => {
+      if (index === 1 || index === 0) return
+      const footer = document.createElement('div')
+      footer.className = 'gala-footer-bandera'
+      footer.innerHTML = '<span>GALA ANIVERSARIO - 40 AÑOS DANZANDO POR BOLIVIA</span><span class="sello-bandera" aria-hidden="true"></span>'
+      page.appendChild(footer)
+      page.classList.add('pagina-con-footer')
+    })
+    // V27: logo junto a la bandera, excepto en páginas con logo propio en el contenido.
+    physicalPages.forEach((page, index) => {
+      if (index === 0 || index === 1 || index === 2 || index === 7 || index === physicalPages.length - 1) return
+      const footer = page.querySelector('.gala-footer-bandera')
+      if (!footer) return
+      const logo = document.createElement('img')
+      logo.src = '/images/LogoBallet.png'
+      logo.alt = 'Ballet Folclórico UCB'
+      logo.className = 'logo-footer-v26'
+      footer.appendChild(logo)
+    })
+    pageFlip.loadFromHTML(physicalPages)
     pageFlip.on('flip', updatePage)
     currentPage.value = pageFlip.getCurrentPageIndex()
     resizeObserver = new ResizeObserver(() => {
@@ -173,10 +199,8 @@ onBeforeUnmount(() => {
           <HistoryPage />
           <IdentityPage />
           <ProgramPage part="first" :segment="0" />
-          <ProgramPage part="first" :segment="1" />
           <IntermissionPage />
           <ProgramPage part="second" :segment="0" />
-          <ProgramPage part="second" :segment="1" />
           <GuestGroupsPage />
           <TeamPage />
           <!-- PROVISIONAL: cambia COMBINAR_OFICIAL_Y_A a false (línea indicada arriba) para volver al diseño anterior. -->

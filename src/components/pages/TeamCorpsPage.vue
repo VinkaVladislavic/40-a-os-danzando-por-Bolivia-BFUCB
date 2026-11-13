@@ -28,7 +28,7 @@ function openPhoto(kind) {
   <article class="pagina">
     <div class="contenido-pagina cuerpo-pagina" :class="{ 'solo-mujeres': !corps.members.men.length }">
       <p class="numero-pagina">{{ String(pageNumber).padStart(2, '0') }}</p>
-      <p class="etiqueta">NUESTROS CUERPOS DE BAILE</p>
+      <p class="etiqueta">CUERPOS DE BAILE</p>
       <h2>{{ fullName }}</h2>
       <figure class="foto-cuerpo foto-mixta foto-grupal-cuerpo">
         <img v-if="!brokenPhotos.grupal" :src="photo" :alt="`${fullName}, fotografía grupal`" @error="brokenPhotos.grupal = true" />
@@ -49,7 +49,7 @@ function openPhoto(kind) {
           </section>
         </div>
       </div>
-      <p class="pie-pagina">Ballet Folclórico Universidad Católica Boliviana</p>
+
     </div>
     <Teleport to="body"><Transition name="modal">
       <div v-if="photoModal" class="modal-backdrop photo-modal-backdrop" @click.self="photoModal = null">
