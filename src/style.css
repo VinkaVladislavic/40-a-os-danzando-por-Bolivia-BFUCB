@@ -461,3 +461,54 @@ html.dialog-open,html.dialog-open body{overflow:hidden!important;overscroll-beha
 .giro-prev .giro-hoja-cara{transform-origin:right center;transform:rotateY(0deg)}
 .giro-prev.giro-activo .giro-hoja-cara{transform:rotateY(179deg);box-shadow:inset 18px 0 32px rgba(55,30,15,.32),-14px 8px 25px rgba(0,0,0,.28)}
 @media(prefers-reduced-motion:reduce){.giro-hoja-cara{transition-duration:300ms}}
+
+/* V12: programa definitivo sin interacción sobre las danzas. */
+.programa-definitivo .danza-texto { pointer-events:none!important; cursor:default!important; display:inline!important; width:auto!important; min-height:0!important; }
+.programa-definitivo .danza-fila,.programa-definitivo .danza-info { pointer-events:none!important; }
+.programa-definitivo .grupo-programa { margin-bottom:clamp(8px,1.8vh,18px); }
+.programa-definitivo .grupo-titulo { line-height:1.15; }
+.programa-definitivo .danza-fila { margin-bottom:clamp(2px,.55vh,7px); }
+.programa-definitivo .programa-continuacion { text-align:center; font-size:11px; letter-spacing:.15em; text-transform:uppercase; opacity:.75; }
+@media(max-width:600px){.programa-definitivo .danza-texto {font-size:clamp(14px,3.8vw,19px)!important}.programa-definitivo .grupo-titulo {font-size:clamp(13px,3.5vw,18px)} }
+
+/* V13: primera página editorial, tipografía legible y título compacto */
+.historia-40{padding:24px 24px 15px;gap:0;overflow:hidden}
+.historia-40 .etiqueta{font-size:8px;letter-spacing:1.25px;line-height:1.25;margin:0}
+.historia-40 h2{font-size:clamp(25px,3.6vw,35px);line-height:1.02;margin:3px 0 1px;letter-spacing:-.4px}
+.historia-40 .separador{margin:2px 0 4px;font-size:11px}
+.historia-40 .texto-pagina{font-size:clamp(12px,1.55vw,15px);line-height:1.25;margin:4px 0;text-wrap:pretty}
+.historia-40 .historia-cierre{font-style:italic}
+.historia-40 .maestra-bloque{grid-template-columns:65px minmax(0,1fr);gap:10px;margin-top:7px;padding-top:7px}
+.historia-40 .retrato-placeholder{min-height:75px}
+.historia-40 .retrato-placeholder span{font-size:22px}
+.historia-40 .bio-maestra .etiqueta{font-size:7px;text-align:left}
+.historia-40 .bio-maestra h3{font-size:17px;margin:2px 0}
+.historia-40 .bio-maestra p{font-size:10px;line-height:1.22;margin:2px 0}
+.historia-40 .pie-pagina{font-size:11px;padding-top:4px}
+/* Logo más destacado en la portada interior del programa artístico */
+.marco-portada .logo-libro{width:clamp(95px,30%,145px);max-height:clamp(88px,24%,145px);margin:0 auto 5px}
+@media(max-width:600px){
+  .historia-40{padding:22px 19px 13px}
+  .historia-40 h2{font-size:27px;margin:2px 0}
+  .historia-40 .texto-pagina{font-size:12.5px;line-height:1.23;margin:3px 0}
+  .historia-40 .maestra-bloque{grid-template-columns:57px minmax(0,1fr);gap:8px;margin-top:5px;padding-top:5px}
+  .historia-40 .retrato-placeholder{min-height:66px}
+  .historia-40 .bio-maestra h3{font-size:16px}
+  .historia-40 .bio-maestra p{font-size:9px;line-height:1.18}
+  .marco-portada .logo-libro{width:clamp(92px,30%,132px);max-height:clamp(85px,23%,125px)}
+}
+
+/* V14: lectura de historia y presentación de gala */
+.historia-40 .bio-maestra p{font-size:clamp(9px,1.1vw,11px);line-height:1.23}
+.espectaculo-pagina{padding-top:27px;overflow:hidden}
+.espectaculo-pagina h2{margin:3px 0 2px;font-size:clamp(27px,3.5vw,35px)}
+.espectaculo-pagina .separador{margin:2px 0 6px}
+.espectaculo-pagina .foto-identidad{height:90px;margin:2px 0 8px}
+.espectaculo-pagina .texto-pagina{font-size:clamp(12px,1.5vw,15px);line-height:1.28;margin:5px 0}
+@media(max-width:600px){
+ .historia-40 .bio-maestra p{font-size:9px;line-height:1.2}
+ .espectaculo-pagina{padding:24px 19px 13px}
+ .espectaculo-pagina h2{font-size:27px}
+ .espectaculo-pagina .foto-identidad{height:75px;margin:1px 0 6px}
+ .espectaculo-pagina .texto-pagina{font-size:12px;line-height:1.23;margin:4px 0}
+}

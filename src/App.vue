@@ -19,8 +19,8 @@ const danceSelected = ref(null)
 const modalOriginPage = ref(null)
 const modalActive = ref(false)
 const currentPage = ref(0)
-const totalPages = 15
-const themeMode = ref('light')
+const totalPages = 17
+const themeMode = ref('dark')
 const showGuide = ref(false)
 function dismissGuide() { showGuide.value = false; try { localStorage.setItem('gala-navigation-guide-v1', 'seen') } catch {} }
 function toggleTheme() { themeMode.value = themeMode.value === 'dark' ? 'light' : 'dark' }
@@ -41,60 +41,29 @@ function updatePage(event) {
   currentPage.value = event.data ?? 0
 }
 function navigate(direction) {
-  if (modalActive.value || showGuide.value || !pageFlip || navigationLocked) return
+  if (!pageFlip || modalActive.value) return
+  // No dependemos de un bloqueo que pueda quedar activo si la librería
+  // no emite el evento de finalización en ciertos navegadores móviles.
   const from = pageFlip.getCurrentPageIndex()
-  const count = pageFlip.getPageCount()
-  const target = direction === 'next' ? Math.min(count - 1, from + 1) : Math.max(0, from - 1)
-  if (target === from) return
-
+  const target = Math.max(0, Math.min(pageFlip.getPageCount() - 1, from + (direction === 'next' ? 1 : -1)))
+  if (target === from || navigationLocked) return
   navigationLocked = true
-  // La capa de giro se anima independientemente del motor de PageFlip.
-  // Así el giro es visible también cuando el motor no reproduce flipNext/flipPrev
-  // (ocurre en algunos navegadores móviles con los gestos deshabilitados).
-  const host = libro.value?.parentElement
-  const sourcePages = libro.value?.querySelectorAll('.pagina')
-  const source = sourcePages?.[direction === 'next' ? from : target]
-  const bookRect = libro.value?.getBoundingClientRect()
-  const pageRect = source?.getBoundingClientRect()
-  const overlay = document.createElement('div')
-  overlay.className = `giro-hoja giro-${direction}`
-  overlay.setAttribute('aria-hidden', 'true')
-  const sheet = document.createElement('div')
-  sheet.className = 'giro-hoja-cara'
-  if (source) {
-    const clone = source.cloneNode(true)
-    clone.removeAttribute('style')
-    clone.classList.add('giro-hoja-contenido')
-    clone.querySelectorAll('[id]').forEach(node => node.removeAttribute('id'))
-    sheet.appendChild(clone)
-  }
-  overlay.appendChild(sheet)
-  if (host && bookRect) {
-    const hostRect = host.getBoundingClientRect()
-    const isPortrait = window.matchMedia('(max-width: 767px)').matches
-    const pageWidth = isPortrait ? bookRect.width : bookRect.width / 2
-    const pageHeight = bookRect.height
-    overlay.style.width = `${pageWidth}px`
-    overlay.style.height = `${pageHeight}px`
-    overlay.style.top = `${bookRect.top - hostRect.top}px`
-    overlay.style.left = `${bookRect.left - hostRect.left + (isPortrait ? 0 : direction === 'next' ? pageWidth : 0)}px`
-    host.appendChild(overlay)
-  }
-  let switched = false
-  const switchPage = () => {
-    if (switched || !pageFlip) return
-    switched = true
-    pageFlip.turnToPage(target)
-    currentPage.value = pageFlip.getCurrentPageIndex()
-  }
-  requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('giro-activo')))
   clearTimeout(navigationUnlockTimer)
-  window.setTimeout(switchPage, 440)
+  try {
+    if (direction === 'next') pageFlip.flipNext('top')
+    else pageFlip.flipPrev('top')
+  } catch (error) {
+    console.warn('Se usará navegación directa:', error)
+    pageFlip.turnToPage(target)
+  }
   navigationUnlockTimer = window.setTimeout(() => {
-    switchPage()
-    overlay.remove()
+    if (pageFlip) {
+      // Fallback: garantiza avanzar incluso cuando la animación se interrumpe.
+      if (pageFlip.getCurrentPageIndex() === from) pageFlip.turnToPage(target)
+      currentPage.value = pageFlip.getCurrentPageIndex()
+    }
     navigationLocked = false
-  }, 930)
+  }, 1100)
 }
 function goNext() { navigate('next') }
 function goPrev() { navigate('prev') }
@@ -132,7 +101,7 @@ function onKeydown(event) {
 watch(programaAbierto, async opened => {
   if (opened) {
     await nextTick()
-    try { showGuide.value = localStorage.getItem('gala-navigation-guide-v1') !== 'seen' } catch { showGuide.value = true }
+    showGuide.value = false
     if (!libro.value) return
     const compact = window.matchMedia('(max-width: 767px)').matches
     pageFlip = new PageFlip(libro.value, {
@@ -146,7 +115,7 @@ watch(programaAbierto, async opened => {
     pageFlip.on('flip', updatePage)
     currentPage.value = pageFlip.getCurrentPageIndex()
     resizeObserver = new ResizeObserver(() => {
-      requestAnimationFrame(() => pageFlip?.update())
+      if (!navigationLocked) requestAnimationFrame(() => { if (!navigationLocked) pageFlip?.update() })
     })
     resizeObserver.observe(libro.value.parentElement)
     window.addEventListener('keydown', onKeydown)
@@ -201,12 +170,14 @@ onBeforeUnmount(() => {
           <BookCoverPage />
           <HistoryPage />
           <IdentityPage />
-          <ProgramPage part="first" @select-dance="openDance" />
+          <ProgramPage part="first" :segment="0" />
+          <ProgramPage part="first" :segment="1" />
           <IntermissionPage />
-          <ProgramPage part="second" @select-dance="openDance" />
+          <ProgramPage part="second" :segment="0" />
+          <ProgramPage part="second" :segment="1" />
           <GuestGroupsPage />
           <TeamPage />
-          <TeamCorpsPage v-for="(corps, index) in danceCorps" :key="corps.name" :corps="corps" :page-number="9 + index" :theme="themeMode" />
+          <TeamCorpsPage v-for="(corps, index) in danceCorps" :key="corps.name" :corps="corps" :page-number="11 + index" :theme="themeMode" />
           <ThanksPage />
         </div>
 
@@ -216,8 +187,8 @@ onBeforeUnmount(() => {
         </nav>
       </div>
       <p class="instruccion-libro">Usa las flechas laterales o superiores · Amplía con dos dedos</p>
-      <Teleport to="body"><Transition name="guide"><div v-if="showGuide" class="guide-overlay" role="dialog" aria-modal="true" aria-label="Cómo utilizar el programa"><div class="guide-card"><img src="/images/LogoBallet.png" alt="Ballet Folclórico UCB" class="guide-logo"/><p class="guide-kicker">TU PROGRAMA DIGITAL</p><h2>Una historia en cada página</h2><div class="guide-gesture" aria-hidden="true">‹ <span>›</span></div><p><strong>Usa las flechas</strong> de la barra superior o los botones transparentes a los lados para pasar páginas.</p><p>Toca el nombre de una danza para conocerla. <strong>Amplía con dos dedos</strong> como en cualquier página web.</p><button class="guide-cta" @click="dismissGuide">Comenzar a explorar <span>→</span></button></div></div></Transition></Teleport>
-      <DanceModal :dance="danceSelected" :theme="themeMode" @close="closeDance" />
+
+
     </section>
   </main>
 </template>
