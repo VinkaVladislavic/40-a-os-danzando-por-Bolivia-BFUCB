@@ -21,10 +21,10 @@ const modalOriginPage = ref(null)
 const modalActive = ref(false)
 const currentPage = ref(0)
 // CAMBIO PROVISIONAL: pon false para recuperar Oficial y A en páginas separadas con fotos.
-const COMBINAR_OFICIAL_Y_A = true
+const COMBINAR_OFICIAL_Y_A = false
 // V30 PROVISIONAL: cambia a true para recuperar la página 8 (equipo y producción).
-const MOSTRAR_PAGINA_EQUIPO = false
-const totalPages = (COMBINAR_OFICIAL_Y_A ? 14 : 15) - (MOSTRAR_PAGINA_EQUIPO ? 0 : 1)
+const MOSTRAR_PAGINA_EQUIPO = true
+const totalPages = 9 + (COMBINAR_OFICIAL_Y_A ? 5 : 6) - (MOSTRAR_PAGINA_EQUIPO ? 0 : 1)
 const themeMode = ref('dark')
 const showGuide = ref(false)
 function dismissGuide() { showGuide.value = false; try { localStorage.setItem('gala-navigation-guide-v1', 'seen') } catch {} }

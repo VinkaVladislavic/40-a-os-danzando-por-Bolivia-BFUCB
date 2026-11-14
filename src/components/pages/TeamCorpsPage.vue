@@ -45,7 +45,7 @@ function openPhoto(kind) {
           <section v-if="corps.members.men.length" class="integrantes-columna">
             <h4>VARONES</h4>
             <ol class="lista-integrantes"><li v-for="(member, index) in corps.members.men" :key="`h-${index}`">{{ member }}</li></ol>
-            <button type="button" class="foto-integrantes-btn" @pointerdown.stop @touchstart.stop @click.stop="openPhoto('boys')">Ver foto de los bailarines</button>
+            <button v-if="corps.name !== 'O'" type="button" class="foto-integrantes-btn" @pointerdown.stop @touchstart.stop @click.stop="openPhoto('boys')">Ver foto de los bailarines</button>
           </section>
         </div>
       </div>
