@@ -8,6 +8,7 @@
         <h3>Personas que hacen posible cada función</h3>
         <div class="creditos-lista">
           <p><strong>Fundadora, maestra y directora artística</strong><span>Norah Valverde Tapia</span></p>
+          <p><strong>Encargada de logística</strong><span>Daphne Mostajo</span></p>
           <p><strong>Encargada de finanzas</strong><span>Lourdes Valverde</span></p>
           <p><strong>Responsable de teatro</strong><span>Delsy Rivero</span></p>
           <p><strong>Encargada de diseño</strong><span>Valeria Zubieta</span></p>
